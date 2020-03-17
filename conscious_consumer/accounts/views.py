@@ -7,11 +7,12 @@ from django.views.generic.edit import (
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Profile
+from .forms import SignUpForm
 
 
 class SignupView(SuccessMessageMixin, CreateView):
     '''User is able to signup with a username, email, and password.'''
-    # form_class
+    form_class = SignUpForm
     success_url = reverse_lazy('accounts:login')
     template_name = 'accounts/signup.html'
     success_message = "Congratulations! You may now log in."
