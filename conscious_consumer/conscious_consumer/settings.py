@@ -136,7 +136,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# where all the static files will go on collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# where to look for static files applied project-wide
+STATICFILE_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # provision PostgreSQL for deployment
 db_from_env = dj_database_url.config()
