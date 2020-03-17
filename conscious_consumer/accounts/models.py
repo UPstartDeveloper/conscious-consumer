@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 import django.conf.settings as dj_conf_settings
 import conscious_consumer.settings as cc_settings
+from store.models import Product
 
 
 class Profile(models.Model):
@@ -36,14 +37,10 @@ class Interest(models.Model):
                               "Category of products that would make it easier "
                               + "for this user to keep to their buget goals."
                              ))
-    '''
-    Uncomment the relationship to the Product model after implementation,
-    and don't forget to import the model into this module as well!
     product = models.ForeignKey(Product, on_delete=models.PROTECT,
                                 help_text=(
-                                "Related products to be recommended.")
+                                 "Related products to be recommended.")
                                 )
-    '''
 
 
 class Notification(models.Model):
