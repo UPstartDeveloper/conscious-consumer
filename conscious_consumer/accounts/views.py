@@ -14,7 +14,7 @@ class SignupView(SuccessMessageMixin, CreateView):
     '''User is able to signup with a username, email, and password.'''
     form_class = SignUpForm
     success_url = reverse_lazy('accounts:login')
-    template_name = 'accounts/signup.html'
+    template_name = 'accounts/auth/signup.html'
     success_message = "Congratulations! You may now log in."
 
     def form_valid(self, form):

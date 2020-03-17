@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.conf import settings as dj_conf_settings
+from django.contrib.auth.models import User
 
 # credit for subclassing UserCreationForm belongs to
 # https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
@@ -8,7 +8,7 @@ from django.conf import settings as dj_conf_settings
 class SignUpForm(UserCreationForm):
     '''A form to register new users.'''
     class Meta:
-        model = dj_conf_settings.AUTH_USER_MODEL
+        model = User
         fields = ['username',
                   'email',
                   'password1', 'password2']

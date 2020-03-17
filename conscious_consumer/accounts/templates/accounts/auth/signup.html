@@ -1,0 +1,29 @@
+<!-- conscious_consumer/accounts/templates/accounts/auth/signup.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Join Now, and Become a Conscious Consumer!</h3>
+    <hr>
+    <div class="row mb-10">
+        <div class="col">
+            <!-- Form to sign up for a nee account -->
+            <form method="post" class="mx-auto">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+                    <div class="form-group row">
+                        <div class="col-8">
+                          <label for="id_{{ field.name }}">{{ field.label|title }}:</label>
+                          <p class="form">{{ field.help_text }}</p>
+                          <input class="form-control" type="{% if 'password' in field.name %}password{% else %}text{% endif %}" name="{{ field.name }}" id="id_{{ field.name }}" required>
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success">Create New Account</button>
+            </form>
+            <br>
+        </div>
+    </div>
+{% endblock %}
