@@ -47,7 +47,7 @@
                         <input type="submit" value="Login" class="btn btn-success mr-2">
                         <input type="hidden" name="next" value="{{ next }}">
                         <!-- link to signup page -->
-                        <a class="btn btn-info" href="#">Sign Up</a>
+                        <a class="btn btn-info" href="{% url 'accounts:signup' %}">Sign Up</a>
                     </div>
                 </div>
             </form>
