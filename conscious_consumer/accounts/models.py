@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.conf import settings
+import django.conf.settings as dj_conf_settings
+import conscious_consumer.settings as cc_settings
 
 
 class Profile(models.Model):
@@ -9,7 +10,7 @@ class Profile(models.Model):
        https://github.com/UPstartDeveloper/fiercely-souvenir/blob/master/travelly/accounts/models.py
 
     """
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+    user = models.OneToOneField(dj_conf_settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     mugshot = models.ImageField(upload_to='images/',
                                 default='images/user-icon.png',
@@ -25,3 +26,33 @@ class Profile(models.Model):
         path_components = {'pk': self.user.id}
         return reverse('accounts:acct_info', kwargs=path_components)
     """
+
+
+class Interest(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,
+                                help_text="Related user profile.")
+    label = models.CharField(max_length=cc_settings.LABEL_MAX_LENGTH,
+                             editable=True, help_text=(
+                              "Category of products that would make it easier "
+                              + "for this user to keep to their buget goals."
+                             ))
+    '''
+    Uncomment the relationship to the Product model after implementation,
+    and don't forget to import the model into this module as well!
+    product = models.ForeignKey(Product, on_delete=models.PROTECT,
+                                help_text=(
+                                "Related products to be recommended.")
+                                )
+    '''
+
+
+class Notification(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,
+                                help_text="Related user profile.")
+    label = models.CharField(max_length=cc_settings.LABEL_MAX_LENGTH,
+                             editable=True, help_text=(
+                              "Message to user about someone reviewing their" +
+                              " product for sale, delivery of a bought product"
+                              + ", or a comment on their goal by another user."
+                             ))
+    # ... are more fields needed here? I'm putting this feature on hold for now

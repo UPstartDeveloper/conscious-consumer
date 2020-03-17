@@ -29,13 +29,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = [
     'localhost',
     'consciousconsumer.herokuapp.com',
     '127.0.0.1',
 ]
+
+# Max length for charfields
+LABEL_MAX_LENGTH = 60
 
 
 # Application definition
