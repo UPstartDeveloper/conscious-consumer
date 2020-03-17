@@ -2,5 +2,55 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- Log in Section -->
+    <h3>Log In <small class="text-muted">and Take Back Control of Carbon!</small></h3>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <!-- display messages to the user if needed -->
+            {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
 
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+                {% else %}
+                    <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }} alert alert-success"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="post" class="mx-auto">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="col-8">
+                        <label for="id_username">Username</label>
+                        <input class="form-control" type="text" name="username" id="id_username" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8">
+                        <label for="id_password">Password</label>
+                        <input class="form-control" type="password" name="password" id="id_password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8">
+                        <input type="submit" value="Login" class="btn btn-success mr-2">
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <!-- link to signup page -->
+                        <a class="btn btn-info" href="#">Sign Up</a>
+                    </div>
+                </div>
+            </form>
+            <!-- Form to Reset Password coming soon -->
+    </div>
 {% endblock %}
