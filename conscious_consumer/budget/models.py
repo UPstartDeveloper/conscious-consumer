@@ -31,6 +31,42 @@ class Goal(models.Model):
     fails = models.IntegerField(help_text=(
         "The number of time periods you have missed this goal. Honor system!"
     ))
+    # user can set a category and must set a value for each of their goals
+    HOME_CAT = "Home"
+    LIVING_CAT = "Living"
+    FOOD_CAT = "Food"
+    SHOPPING_CAT = "Shopping"
+    TRAVEL_CAT = "Travel"
+    CATEGORY_CHOICES = [
+        (HOME_CAT, 'Home'),
+        (LIVING_CAT, 'Living'),
+        (FOOD_CAT, "Food"),
+        (SHOPPING_CAT, "Shopping"),
+        (TRAVEL_CAT, "Travel"),
+    ]
+    category = models.CharField(null=True, blank=True,
+                                choices=CATEGORY_CHOICES,
+                                max_length=8,
+                                help_text=(
+                                    "What area of life relates to your goal?"
+                                ))
+    MIN_VALUE = 0.03
+    LOW_VALUE = 0.06
+    MEDIUM_VALUE = 0.09
+    HIGH_VALUE = 0.12
+    MAX_VALUE = 0.17
+    CARBON_CHOICES = [
+        (MIN_VALUE, "Lower bound carbon limit"),
+        (LOW_VALUE, "Almost-there carbon limit"),
+        (MEDIUM_VALUE, "Reasonable carbon limit"),
+        (HIGH_VALUE, "Making-progress carbon limit"),
+        (MAX_VALUE, "Upper bound carbon limit"),
+    ]
+    monthly_target = models.FloatField(default=MAX_VALUE,
+                                       choices=CARBON_CHOICES, help_text=(
+                                        "How many tons carbon will you limit " +
+                                        "yourself to each month?"
+                                       ))
 
     def save(self, *args, **kwargs):
         '''Creates a URL safe slug automatically when a new a goal is made.'''
