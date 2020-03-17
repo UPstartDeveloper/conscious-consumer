@@ -1,5 +1,5 @@
 from django.db import models
-import django.conf.settings as dj_conf_settings
+from django.conf import settings as dj_conf_settings
 import conscious_consumer.settings as cc_settings
 
 
@@ -7,7 +7,8 @@ class Goal(models.Model):
     title = models.CharField(max_length=cc_settings.LABEL_MAX_LENGTH,
                              unique=True,
                              help_text="Title of the goal.")
-    author = models.ForeignKey(User, on_delete=models.PROTECT,
+    author = models.ForeignKey(dj_conf_settings.AUTH_USER_MODEL,
+                               on_delete=models.PROTECT,
                                help_text="The user that posted this article.")
     slug = models.CharField(max_length=cc_settings.LABEL_MAX_LENGTH,
                             blank=True, editable=False,
@@ -31,6 +32,25 @@ class Goal(models.Model):
         "The number of time periods you have missed this goal. Honor system!"
     ))
 
+    def save(self, *args, **kwargs):
+        '''Creates a URL safe slug automatically when a new a goal is made.'''
+        if not self.pk:
+            self.slug = slugify(self.title, allow_unicode=True)
+
+        # Call save on the superclass.
+        return super(Goal, self).save(*args, **kwargs)
+
+    def __str__(self):
+        '''Return a descriptive name to reference the goal.'''
+        return f'{self.title}'
+
+    """
+    def get_absolute_url(self):
+        '''Returns a fully-qualified path for a goal.'''
+        path_components = {'slug': self.slug}
+        return reverse('wiki:wiki-details-page', kwargs=path_components)
+    """
+
 
 class Comment(models.Model):
     user = models.OneToOneField(dj_conf_settings.AUTH_USER_MODEL,
@@ -46,18 +66,6 @@ class Comment(models.Model):
                                          "The date and time this comment" +
                                          " was last edited. Auto-generated."))
 
-def __str__(self):
-    return self.title
-
-def get_absolute_url(self):
-    """ Returns a fully-qualified path for a page (/my-new-wiki-page). """
-    path_components = {'slug': self.slug}
-    return reverse('wiki:wiki-details-page', kwargs=path_components)
-
-def save(self, *args, **kwargs):
-    '''Creates a URL safe slug automatically when a new a page is made.'''
-    if not self.pk:
-        self.slug = slugify(self.title, allow_unicode=True)
-
-    # Call save on the superclass.
-    return super(Page, self).save(*args, **kwargs)
+    def __str__(self):
+        '''Return a descriptive name to reference the comment.'''
+        return f"Comment {self.id} for '{self.goal}'"

@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Product
+from conscious_consumer.settings import ADMIN_TITLE
 
-# Register your models here.
+admin.site.site_header = ADMIN_TITLE
+admin.site.register(Product)

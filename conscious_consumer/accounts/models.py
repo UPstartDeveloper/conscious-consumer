@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-import django.conf.settings as dj_conf_settings
+from django.conf import settings as dj_conf_settings
 import conscious_consumer.settings as cc_settings
 from store.models import Product
 

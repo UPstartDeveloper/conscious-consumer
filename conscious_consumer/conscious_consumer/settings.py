@@ -40,16 +40,24 @@ ALLOWED_HOSTS = [
 # Max length for charfields
 LABEL_MAX_LENGTH = 60
 
+# Header for the Admin site
+ADMIN_TITLE = "Conscious Consumer Administration"
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    # built-in apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # apps added in this repo
+    'accounts.apps.AccountsConfig',
+    'budget.apps.BudgetConfig',
+    'store.apps.StoreConfig',
 ]
 
 MIDDLEWARE = [
