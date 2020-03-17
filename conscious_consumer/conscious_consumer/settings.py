@@ -150,7 +150,7 @@ STATIC_URL = '/static/'
 # where all the static files will go on collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # where to look for static files applied project-wide
-STATICFILE_DIRS = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
