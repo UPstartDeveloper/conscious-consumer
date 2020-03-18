@@ -4,8 +4,8 @@
 {% block content %}
 <h1>Change a Goal</h1>
 <!-- Motivation to User -->
+<h3>We encourage change!</h3>
 <p>
-    <strong>We encourage change!</strong>
     <ul>Please modify your goals if you fall in either of the following two scenarios:
         <li>
             You're crushing it so far! And now you feel ready for a greater challenge 👏
@@ -16,7 +16,12 @@
     </ul>
 </p>
 <!-- Update Form -->
-<h2>Edit your Goal Below</h2>
+<h3>Edit your Goal Below</h3>
 {% include 'partials/form.html' %}
+
+<!-- Motivational Quote -->
+<div class="row mt-2">
+    <p><strong>"Your life does not get better by chance, it gets better by change."</strong> - Jim Rohn, <i>author and motivational speaker</i></p>
+</div>
 
 {% endblock %}
