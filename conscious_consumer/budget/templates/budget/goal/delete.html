@@ -11,6 +11,12 @@
 {% include 'partials/goal-summary.html' %}
 
 <h3>Are you sure you would like to continue?</h3>
-{% include 'partials/form.html' %}
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <input type="submit" class="btn btn-secondary ml-4 mr-2" value="Confirm">
+        <a href="{% url 'budget:goal_detail_personal' user.id goal.slug %}" class="btn btn-success">Back to Goal Page</a>
+    </div>
+</form>
 
 {% endblock %}
