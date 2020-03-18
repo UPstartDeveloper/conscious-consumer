@@ -59,7 +59,9 @@ INSTALLED_APPS = [
     'budget.apps.BudgetConfig',
     'store.apps.StoreConfig',
     'api.apps.ApiConfig',
-    'rest_framework'
+    # third party libraries
+    'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -158,6 +160,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# AWS S3 Settings (Image Uploads)
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # provision PostgreSQL for deployment
 db_from_env = dj_database_url.config()
