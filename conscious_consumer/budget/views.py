@@ -133,7 +133,7 @@ class GoalDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     '''User submits a form to delete one of their goals.'''
     model = Goal
     template_name = 'budget/goal/delete.html'
-    success_url = reverse_lazy('budget:all_goals')
+    success_url = reverse_lazy('budget:goal_list_public')
     queryset = Goal.objects.all()
 
     def get(self, request, slug):

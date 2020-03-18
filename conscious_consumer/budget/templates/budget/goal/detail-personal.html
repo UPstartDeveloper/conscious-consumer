@@ -6,7 +6,7 @@
 {% include 'partials/common-goal-detail.html' %}
 <!-- Display Goal Analytics -->
 <!-- Links to All Personal Goals, Update, and Delete -->
-<a href="#" class="btn btn-primary">Back to All Personal Goals</a>
-<a href="{% url 'budget:goal_update' goal.slug %}" class="btn">Edit Goal</a>
-<a href="{% url 'budget:goal_delete' goal.slug %}" class="btn">Delete Goal</a>
+<a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-primary">Back to All Personal Goals</a>
+<a href="{% url 'budget:goal_update' goal.slug %}" class="btn btn-info">Edit Goal</a>
+<a href="{% url 'budget:goal_delete' goal.slug %}" class="btn btn-secondary">Delete Goal</a>
 {% endblock %}

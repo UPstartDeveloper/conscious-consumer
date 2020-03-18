@@ -13,7 +13,7 @@
     <h3>Fill out the Form Below</h3>
         {% include 'partials/form.html' %}
     <br>
-    <a class="btn btn-primary" href="{% url 'budget:all_goals'%}">See All Goals</a>
-    <a class="btn btn-info" href="{% url 'budget:all_goals'%}">See Your Goals</a>
+    <a class="btn btn-primary" href="{% url 'budget:goal_list_public'%}">See All Goals</a>
+    <a class="btn btn-info" href="{% url 'budget:goal_list_public'%}">See Your Goals</a>
 
 {% endblock %}

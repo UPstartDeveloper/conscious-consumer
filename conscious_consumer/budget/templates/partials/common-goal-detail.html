@@ -1,14 +1,21 @@
 <!-- conscious_consumer/budget/templates/partials/common-goal-detail.html -->
 <!-- Information about Goal -->
 <div class="card border-info mb-3">
-    <h3 class="card-header border-primary">
-      {{ goal.title }}
-    </h3>
+    <div class="card-header border-primary">
+        <h3 class="">
+          {{ goal.title }}
+        </h3>
+        <div class="row">
+            <small class="text-muted ml-3 mr-auto">Created :{{ goal.created|date:"SHORT_DATETIME_FORMAT" }}</small>
+            <small class="text-muted">Last Modified:{{ goal.modified|date:"SHORT_DATETIME_FORMAT" }}</small>
+        </div>
+    </div>
     <div class="card-body border-dark">
         <p class="card-text text-dark">
             <ul>
                 <!-- Goal Overview -->
-                <li>{{ goal.description }}/li>
+                <li><strong>Target:</strong> {{ goal.monthly_target }} tons per mo.</li>
+                <li><strong>Description:</strong> {{ goal.description }}/li>
             </ul>
         </p>
         <hr>
@@ -16,9 +23,11 @@
             <a href="{% url 'budget:goal_detail_public' goal.slug %}" title="See More">See More</a>
         </div>
     </div>
-    <div class="card-footer row">
-        <small class="text-muted mr-auto">Last Modified:{{ goal.modified|date:"SHORT_DATETIME_FORMAT" }}</small>
-        <small>Posted by: {{ goal.author }}</small>
+    <div class="card-footer">
+        <div class="row">
+            <small class="text-muted ml-3 mr-auto"> Category: {{ goal.category }}</small>
+            <small>Posted by: {{ goal.author }}</small>
+        </div>
     </div>
 </div>
 

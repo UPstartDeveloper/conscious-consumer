@@ -11,11 +11,11 @@ from .views import (
 
 app_name = 'budget'
 urlpatterns = [
-    path('goals/public/', AllGoalList.as_view(), name="all_goals"),
+    path('goals/public/', AllGoalList.as_view(), name="goal_list_public"),
     path('goals/create/', GoalCreate.as_view(), name="goal_create"),
     # for personal view, id of user is passed to query string
     path('goals/person/<int:pk>/', PersonalGoalList.as_view(),
-         name="personal_goals"),
+         name="goal_list_personal"),
     path('goals/<int:pk>/<slug:slug>/', PersonalGoalDetail.as_view(),
          name='goal_detail_personal'),
     path('goals/<slug:slug>/', PublicGoalDetail.as_view(),

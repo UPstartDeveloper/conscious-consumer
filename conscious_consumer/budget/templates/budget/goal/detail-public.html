@@ -2,5 +2,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<!-- Show Goal Information (and comments if any) -->
+{% include 'partials/common-goal-detail.html' %}
+<!-- Link to All Goals -->
+<a href="{% url 'budget:goal_list_public' %}" class="btn btn-primary">Back to All Goals</a>
 {% endblock %}
