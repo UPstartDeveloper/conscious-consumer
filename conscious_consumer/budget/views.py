@@ -125,7 +125,7 @@ class GoalDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
            HttpResponse: the view of the detail template
 
         """
-        goal = self.get_queryset().get(slug__iexact=goal)
+        goal = self.get_queryset().get(slug__iexact=slug)
         context = {
             'goal': goal
         }
