@@ -79,10 +79,18 @@ class GoalDetail(DetailView):
 
 class GoalCreate(LoginRequiredMixin, CreateView):
     '''User submits a form to add a new goal for themself.'''
-    pass
+    model = Goal
+    form_class = GoalForm
+    template_name = 'budget/goal/create.html'
+    queryset = Goal.objects.all()
+
+    def form_valid(self, form):
+        '''Initializes the author based on who submitted the form.'''
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
-class GoalUpdate(LoginRequiredMixin, UpdateView):
+class GoalUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     '''User submits a form to edit one of their goal.'''
     pass
 
