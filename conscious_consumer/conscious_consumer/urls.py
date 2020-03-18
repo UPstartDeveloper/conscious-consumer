@@ -27,4 +27,6 @@ urlpatterns = [
     path('budget/', include('budget.urls')),
     # E-commerce-related urls
     path('store/', include('store.urls')),
+    # RESTful API endpoints
+    path('api/', include('api.urls')),
 ]

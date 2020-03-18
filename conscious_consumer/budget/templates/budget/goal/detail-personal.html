@@ -20,11 +20,26 @@
 <p>
     <strong>Don't cheat!</strong> This page is visible only to you, so if you lie you're only doing yourself (and the planet) a disservice.
 </p>
-<!-- Data Visualizations -->
-{% include 'partials/bar-chart.html' %}
-
 <!-- Links to All Personal Goals, Update, and Delete -->
-<a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-primary">Back to All Personal Goals</a>
-<a href="{% url 'budget:goal_update' goal.slug %}" class="btn btn-info">Edit Goal</a>
-<a href="{% url 'budget:goal_delete' goal.slug %}" class="btn btn-secondary">Delete Goal</a>
+<div class="row mb-3">
+    <a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-primary ml-3 mr-3">Back to All Personal Goals</a>
+    <a href="{% url 'budget:goal_update' goal.slug %}" class="btn btn-info mr-3">Edit Goal</a>
+    <a href="{% url 'budget:goal_delete' goal.slug %}" class="btn btn-secondary">Delete Goal</a>
+</div>
+<!-- Data Visualizations -->
+<div class="container mt-3">
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Staying on Track</h3>
+            <p>Observe the pie chart to the right to see how many months you have
+            stuck to your carbon budget, and how many you have gone over.</p>
+        </div>
+        <div class="col-md-6">
+            <canvas id="doughnutChart" width="200" height="200"></canvas>
+            {% include 'partials/doughnut-chart.html' %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
