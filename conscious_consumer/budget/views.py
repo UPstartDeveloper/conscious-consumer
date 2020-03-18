@@ -77,7 +77,7 @@ class GoalDetail(DetailView):
         return render(request, template, context)
 
 
-class GoalCreate(LoginRequiredMixin, CreateView):
+class GoalCreate(UserPassesTestMixin, CreateView):
     '''User submits a form to add a new goal for themself.'''
     model = Goal
     form_class = GoalForm
@@ -88,6 +88,10 @@ class GoalCreate(LoginRequiredMixin, CreateView):
         '''Initializes the author based on who submitted the form.'''
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        '''Restrict viewing of the form to authenticated users.'''
+        return self.request.user.is_authenticated is True
 
 
 class GoalUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
