@@ -73,7 +73,7 @@ class PersonalGoalDetail(DetailView):
             return render(request, template, context)
         # otherwise display the public template
         else:
-            return reverse('budget:goal_detail_public', goal.slug)
+            return redirect(goal.get_absolute_url())
 
 
 class PublicGoalDetail(DetailView):

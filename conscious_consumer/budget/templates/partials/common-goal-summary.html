@@ -11,6 +11,9 @@
             </ul>
         </p>
         <hr>
+        <div class="text-left">
+            <a href="{% url 'budget:goal_detail_personal' user.id goal.slug %}">See personal details</a>
+        </div>
         <div class="text-right">
             <a href="{% url 'budget:goal_detail_public' goal.slug %}" title="See More">See More</a>
         </div>
