@@ -1,4 +1,4 @@
-<!-- conscious_consumer/budget/templates/budget/partials/goal-summary.html -->
+<!-- conscious_consumer/budget/templates/budget/partials/common-goal-summary.html -->
 <div class="card border-info mb-3">
     <h3 class="card-header border-primary mb-3">
       {{ goal.title }}
@@ -15,8 +15,10 @@
             <a href="{% url 'budget:goal_detail_public' goal.slug %}" title="See More">See More</a>
         </div>
     </div>
-    <div class="card-footer row">
-        <small class="text-muted mr-auto">Last Modified:{{ goal.modified|date:"SHORT_DATETIME_FORMAT" }}</small>
-        <small>Posted by: {{ goal.author }}</small>
+    <div class="card-footer">
+        <div class="row">
+            <small class="text-muted mr-auto">Last Modified:{{ goal.modified|date:"SHORT_DATETIME_FORMAT" }}</small>
+            <small>Posted by: {{ goal.author }}</small>
+        </div>
     </div>
 </div>

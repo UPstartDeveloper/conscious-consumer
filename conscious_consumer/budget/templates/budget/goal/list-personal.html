@@ -2,5 +2,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Personal Goals</h1>
+<!-- Info Message to User -->
+<h3>Take a look at your progress!</h3>
+<p>Below are all your goals in this system.</p>
+
+<!-- List of all goals -->
+    <!-- Link to Create a Goal -->
+    <div class="row mb-3">
+        <a href="{% url 'budget:goal_create' %}" class="btn btn-info mr-auto ml-3">Set a New Goal</a>
+    </div>
+    <div class="card-columns">
+        {% for goal in goals %}
+            {% include 'partials/personal-goal-summary.html' %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

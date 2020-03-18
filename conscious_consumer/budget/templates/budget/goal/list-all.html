@@ -2,5 +2,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>All Goals</h1>
+<!-- Info Message to User -->
+<p>Curious what we're up to? <br>
+    Check out all goals Conscious Consumer have set below! <br>
+    <!-- Link to other goals page -->
+        <a href="{% url 'budget:goal_list_personal' user.id %}">
+            To see only your own goals: be sure to log in,
+            and then click here!
+        </a>
+</p>
+<!-- List of all goals -->
+    <!-- Link to Create a Goal -->
+    <div class="row mb-3">
+        <a href="{% url 'budget:goal_create' %}" class="btn btn-info mr-auto ml-3">Set a New Goal</a>
+    </div>
+    <div class="card-columns">
+        {% for goal in goals %}
+            {% include 'partials/common-goal-summary.html' %}
+        {% endfor %}
+    </div>
 
 {% endblock %}
