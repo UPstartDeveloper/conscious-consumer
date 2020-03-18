@@ -13,11 +13,11 @@ app_name = 'budget'
 urlpatterns = [
     path('goals/public/', AllGoalList.as_view(), name="all_goals"),
     # for personal goals list, id of user is passed to query string
-    path('goals/private/<int:pk>/', PersonalGoalList.as_view(),
+    path('goals/person/<int:pk>/', PersonalGoalList.as_view(),
          name="personal_goals"),
     path('goals/public/<slug:slug>', OtherGoalDetail.as_view(),
          name='goal_detail_other'),
-    path('goals/private/<slug:slug>/', PersonalGoalDetail.as_view(),
+    path('goals/person/<slug:slug>/', PersonalGoalDetail.as_view(),
          name="goal_detail_personal"),
     path('goals/create/', GoalCreate.as_view(), name="goal_create"),
     path('goals/update/<slug:slug>/', GoalUpdate.as_view(),

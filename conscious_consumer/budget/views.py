@@ -18,16 +18,25 @@ class AllGoalList(ListView):
     template_name = 'budget/goal/list-all.html'
 
     def get(self, request):
-        '''Render a context containing all Trip instances.'''
+        '''Render a context containing all Goal instances.'''
         goals = self.get_queryset().all()
         return render(request, self.template_name, {
             'goals': goals
         })
 
 
-class PersonalGoalList(LoginRequiredMixin, UserPassesTestMixin, ListView):
+class PersonalGoalList(ListView):
     '''User sees goals only pertaining to themself.'''
-    pass
+    model = Goal
+    template_name = 'budget/goal/list-personal.html'
+
+    def get(self, request, pk):
+        '''Render a context containing all Goal specific to the user.'''
+        user = User.objects.get(id=pk)
+        goals = self.get_queryset().filter(author=user)
+        return render(request, self.template_name, {
+            'goals': goals
+        })
 
 
 class OtherGoalDetail(DetailView):
