@@ -64,8 +64,8 @@ class Goal(models.Model):
     ]
     monthly_target = models.FloatField(default=MAX_VALUE,
                                        choices=CARBON_CHOICES, help_text=(
-                                        "How many tons carbon will you limit " +
-                                        "yourself to each month?"
+                                        "How many tons carbon will you limit "
+                                        + "yourself to each month?"
                                        ))
 
     def save(self, *args, **kwargs):
@@ -80,12 +80,12 @@ class Goal(models.Model):
         '''Return a descriptive name to reference the goal.'''
         return f'{self.title}'
 
-    """
+    # Credit for this implementation goes to Dani Roxberry at
+    # https://github.com/UPstartDeveloper/makewiki_v2/blob/master/wiki/models.py
     def get_absolute_url(self):
         '''Returns a fully-qualified path for a goal.'''
         path_components = {'slug': self.slug}
-        return reverse('wiki:wiki-details-page', kwargs=path_components)
-    """
+        return reverse('budget:goal_detail_personal', kwargs=path_components)
 
 
 class Comment(models.Model):
