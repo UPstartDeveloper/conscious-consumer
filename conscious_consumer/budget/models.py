@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings as dj_conf_settings
 import conscious_consumer.settings as cc_settings
+from django.utils.text import slugify
+from django.urls import reverse
 
 
 class Goal(models.Model):
@@ -56,17 +58,16 @@ class Goal(models.Model):
     HIGH_VALUE = 0.12
     MAX_VALUE = 0.17
     CARBON_CHOICES = [
-        (MIN_VALUE, "Lower bound carbon limit"),
-        (LOW_VALUE, "Almost-there carbon limit"),
-        (MEDIUM_VALUE, "Reasonable carbon limit"),
-        (HIGH_VALUE, "Making-progress carbon limit"),
-        (MAX_VALUE, "Upper bound carbon limit"),
+        (MIN_VALUE, "0.03 tons/mo. - Lower limit"),
+        (LOW_VALUE, "0.06 tons/mo. - Almost-there limit"),
+        (MEDIUM_VALUE, "0.09 tons/mo. - Reasonable limit"),
+        (HIGH_VALUE, "0.12 tons/mo. - Making-progress limit"),
+        (MAX_VALUE, "0.17 tons/mo. - Upper limit"),
     ]
     monthly_target = models.FloatField(default=MAX_VALUE,
                                        choices=CARBON_CHOICES, help_text=(
-                                        "How many tons carbon will you limit "
-                                        + "yourself to each month?"
-                                       ))
+                                        "Tons carbon will you limit "
+                                        + "yourself to each month."))
 
     def save(self, *args, **kwargs):
         '''Creates a URL safe slug automatically when a new a goal is made.'''
@@ -85,7 +86,7 @@ class Goal(models.Model):
     def get_absolute_url(self):
         '''Returns a fully-qualified path for a goal.'''
         path_components = {'slug': self.slug}
-        return reverse('budget:goal_detail_personal', kwargs=path_components)
+        return reverse('budget:goal_detail', kwargs=path_components)
 
 
 class Comment(models.Model):

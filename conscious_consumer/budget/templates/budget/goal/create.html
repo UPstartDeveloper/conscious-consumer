@@ -2,17 +2,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Set a Goal for Yourself</h1>
-    <!-- Form to Fill Out -->
-    <h2>Fill out the Form Below</h2>
-        {% include 'partial/form.html' %}
+    <h1>Set a New Goal</h1>
     <!-- Motivation for User -->
-    <h3><strong>Challenge yourself!</strong></h3>
+    <h2 class="mt-2"><strong>Challenge yourself!</strong></h2>
     <p>Making a change in your lifestlye habits is never easy. <br>
         Take steps each day to improve, even 0.1% each day is better than nothing. <br>
         If you fail, be kind to yourself - we promise you'll thank yourself in the future for making this effort! 🤩
     </p>
-
+    <!-- Form to Fill Out -->
+    <h3>Fill out the Form Below</h3>
+        {% include 'partials/form.html' %}
+    <br>
     <a class="btn btn-primary" href="{% url 'budget:all_goals'%}">See All Goals</a>
     <a class="btn btn-info" href="{% url 'budget:all_goals'%}">See Your Goals</a>
 
