@@ -1,7 +1,8 @@
 <!-- conscious_consumer/budget/templates/budget/partials/goal-summary.html -->
 <div class="card border-info mb-3">
-    <h3 class="card-header ">
+    <h3 class="card-header border-primary mb-3">
       {{ goal.title }}
+    </h3>
     <div class="card-body border-dark">
         <p class="card-text text-dark">
             <ul>
@@ -12,7 +13,7 @@
         </p>
         <hr>
         <div class="text-right">
-            <a href="{% url 'budget:goal_detail' goal.slug %}" title="See More">See More</a>
+            <a href="{% url 'budget:goal_detail_public' goal.slug %}" title="See More">See More</a>
         </div>
     </div>
     <div class="card-footer row">
