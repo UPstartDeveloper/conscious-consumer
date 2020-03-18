@@ -6,9 +6,7 @@ from budget.models import Goal
 
 
 class GoalData(APIView):
-    """
-    View to list the times a user has achieved or failed at a Goal.
-    """
+    '''View to list the times a user has achieved or failed at a Goal.'''
     serializer_class = GoalSerializer
     authentication_classes = list()
     permission_classes = list()

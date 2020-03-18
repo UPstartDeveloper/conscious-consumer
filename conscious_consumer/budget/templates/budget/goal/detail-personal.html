@@ -31,13 +31,20 @@
     <div class="row"></div>
     <div class="row">
         <div class="col-md-6">
-            <h3>Staying on Track</h3>
+            <h3>Staying on Budget</h3>
             <p>Observe the pie chart to the right to see how many months you have
             stuck to your carbon budget, and how many you have gone over.</p>
         </div>
         <div class="col-md-6">
-            <canvas id="doughnutChart" width="200" height="200"></canvas>
-            {% include 'partials/doughnut-chart.html' %}
+            <!-- if there's no data yet, then show no visualization and inform user -->
+            {% if goal.achievements == 0 and goal.fails == 0 %}
+            <div class="alert alert-danger" role="alert">
+                You have not recorded any achievements or failures for this goal.
+            </div>
+            {% else %}
+                <canvas id="doughnutChart" width="200" height="200"></canvas>
+                {% include 'partials/doughnut-chart.html' %}
+            {% endif %}
         </div>
     </div>
 </div>
