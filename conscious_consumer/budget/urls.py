@@ -2,8 +2,7 @@ from django.urls import path
 from .views import (
     AllGoalList,
     PersonalGoalList,
-    OtherGoalDetail,
-    PersonalGoalDetail,
+    GoalDetail,
     GoalCreate,
     GoalUpdate,
     GoalDelete,
@@ -15,10 +14,8 @@ urlpatterns = [
     # for personal goals list, id of user is passed to query string
     path('goals/person/<int:pk>/', PersonalGoalList.as_view(),
          name="personal_goals"),
-    path('goals/public/<slug:slug>', OtherGoalDetail.as_view(),
-         name='goal_detail_other'),
-    path('goals/person/<slug:slug>/', PersonalGoalDetail.as_view(),
-         name="goal_detail_personal"),
+    path('goals/<int:pk>/<slug:slug>/', GoalDetail.as_view(),
+         name='goal_detail'),
     path('goals/create/', GoalCreate.as_view(), name="goal_create"),
     path('goals/update/<slug:slug>/', GoalUpdate.as_view(),
          name="goal_update"),

@@ -39,14 +39,42 @@ class PersonalGoalList(ListView):
         })
 
 
-class OtherGoalDetail(DetailView):
-    '''User sees details specific to a single goal set by another user.'''
-    pass
+class GoalDetail(DetailView):
+    '''User sees details specific to a single goal.'''
+    model = Goal
+    personal_template_name = 'budget/goal/detail-personal.html'
+    public_template_name = 'budget/goal/detail-public.html'
 
+    def get(self, request, pk, slug):
+        """Renders a page to show the details for a specific Goal.
+           If the user is viewing a goal another user wrote, they will see both
+           the goal and comments associated with it.
+           If the user views a goal they authored, they will be able to see the
+           goal, along with some data visualizations of how well they've kept
+           on track.
 
-class PersonalGoalDetail(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-    '''User sees details related to one of their own goals.'''
-    pass
+           Parameters:
+           request(HttpRequest): the GET request sent to the server
+           pk(int): unique id value of the user
+           slug(slug): unique slug of the Goal being requested
+
+           Returns:
+           HttpResponse: the view of either the personal or public template
+
+        """
+        # determine if the request user is the author or not
+        user = User.objects.get(id=pk)
+        goal = Goal.objects.get(slug__iexact=slug)
+        # if they are, display the personal template
+        if goal.author == user:
+            template = self.personal_template_name
+        # otherwise display the public template
+        else:
+            template = self.public_template_name
+        context = {
+            'goal': goal
+        }
+        return render(request, template, context)
 
 
 class GoalCreate(LoginRequiredMixin, CreateView):
