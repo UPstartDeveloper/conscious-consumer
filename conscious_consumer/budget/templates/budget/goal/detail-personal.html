@@ -5,6 +5,21 @@
 <!-- Show Goal Information (and comments if any) -->
 {% include 'partials/common-goal-detail.html' %}
 <!-- Display Goal Analytics -->
+<h3>How to Keep Track of Your Goals</h3>
+<ol>
+    <li>Pick a check-in date for yourself.</li>
+    <li>Every month on that date, go to
+        <a href="https://www.nature.org/en-us/get-involved/how-to-help/carbon-footprint-calculator/">
+            the carbon calculator on The Natural Conservancy
+        </a>.
+        <br>
+        Judge whether or not you stayed below your carbon budget or not.
+    </li>
+    <li>Edit your Goal below, updating the numbers of "achievements" and "fails" accordingly. The results will be reflected on this page.</li>
+</ol>
+<p>
+    <strong>Don't cheat!</strong> This page is visible only to you, so if you lie you're only doing yourself (and the planet) a disservice.
+</p>
 <!-- Links to All Personal Goals, Update, and Delete -->
 <a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-primary">Back to All Personal Goals</a>
 <a href="{% url 'budget:goal_update' goal.slug %}" class="btn btn-info">Edit Goal</a>

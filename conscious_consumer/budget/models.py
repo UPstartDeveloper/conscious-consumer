@@ -28,10 +28,12 @@ class Goal(models.Model):
                                                "generated when the model " +
                                                "updates."))
     achievements = models.IntegerField(help_text=(
-        "The number of time periods you have met this goal. Honor system!"
+        "The number of time periods you have met this goal. " +
+        "Start at 0 - honor system!"
     ))
     fails = models.IntegerField(help_text=(
-        "The number of time periods you have missed this goal. Honor system!"
+        "The number of time periods you have missed this goal. " +
+        "Start at 0 - honor system!"
     ))
     # user can set a category and must set a value for each of their goals
     HOME_CAT = "Home"
