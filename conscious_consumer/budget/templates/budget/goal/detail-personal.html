@@ -20,6 +20,9 @@
 <p>
     <strong>Don't cheat!</strong> This page is visible only to you, so if you lie you're only doing yourself (and the planet) a disservice.
 </p>
+<!-- Data Visualizations -->
+{% include 'partials/bar-chart.html' %}
+
 <!-- Links to All Personal Goals, Update, and Delete -->
 <a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-primary">Back to All Personal Goals</a>
 <a href="{% url 'budget:goal_update' goal.slug %}" class="btn btn-info">Edit Goal</a>
