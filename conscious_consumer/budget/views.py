@@ -96,7 +96,15 @@ class GoalCreate(UserPassesTestMixin, CreateView):
 
 class GoalUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     '''User submits a form to edit one of their goal.'''
-    pass
+    model = Goal
+    form_class = GoalForm
+    template_name = 'budget/goal/update.html'
+    queryset = Goal.objects.all()
+
+    def test_func(self):
+        '''Ensures the user editing the goal is its author.'''
+        goal = self.get_object()
+        return (self.request.user == goal.author)
 
 
 class GoalDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
