@@ -109,4 +109,29 @@ class GoalUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class GoalDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     '''User submits a form to delete one of their goals.'''
-    pass
+    model = Goal
+    template_name = 'budget/goal/delete.html'
+    success_url = reverse_lazy('budget:all_goals')
+    queryset = Goal.objects.all()
+
+    def get(self, request, slug):
+        """Renders a short preview of thr goal, along with form to delete.
+
+           Parameters:
+           request(HttpRequest): the GET request sent to the server
+           slug(slug): unique slug field value of the Goal instance
+
+           Returns:
+           HttpResponse: the view of the detail template
+
+        """
+        goal = self.get_queryset().get(slug__iexact=goal)
+        context = {
+            'goal': goal
+        }
+        return render(request, self.template_name, context)
+
+    def test_func(self):
+        '''Ensures the user removing the goal is its author.'''
+        goal = self.get_object()
+        return (self.request.user == goal.author)
