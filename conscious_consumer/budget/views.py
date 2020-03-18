@@ -14,7 +14,15 @@ from django.contrib.auth.models import User
 
 class AllGoalList(ListView):
     '''User sees goal from all users on the site.'''
-    pass
+    model = Goal
+    template_name = 'budget/goal/list-all.html'
+
+    def get(self, request):
+        '''Render a context containing all Trip instances.'''
+        goals = self.get_queryset().all()
+        return render(request, self.template_name, {
+            'goals': goals
+        })
 
 
 class PersonalGoalList(LoginRequiredMixin, UserPassesTestMixin, ListView):
