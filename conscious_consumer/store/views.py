@@ -26,7 +26,17 @@ class ProductList(ListView):
 
 
 class ProductCreate(LoginRequiredMixin, CreateView):
-    pass
+    '''Submit a form to post new product for display.'''
+    model = Product
+    form_class = ProductForm
+    template_name = 'store/product/create.html'
+    queryset = Product.objects.all()
+    login_url = 'accounts:login'
+
+    def form_valid(self, form):
+        '''Initializes the passenger based on who submitted the form.'''
+        form.instance.seller = self.request.user
+        return super().form_valid(form)
 
 
 class ProductDetail(DetailView):

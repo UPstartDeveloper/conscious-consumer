@@ -4,6 +4,8 @@
 {% block content %}
     <h1>A New Way to Live</h1>
     <h2>Shop below for new ways to live greener!</h2>
+    <!-- Link to Add a Product -->
+    <a href="{% url 'store:product_create' %}" class="btn btn-success">Add Product Listing</a>
     <div class="card-columns">
         <!-- display all products in store right now -->
         {% if products %}
