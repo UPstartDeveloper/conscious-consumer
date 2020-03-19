@@ -23,6 +23,25 @@ class Product(models.Model):
                                   on_delete=models.PROTECT,
                                   help_text="User who posted this product.")
 
+    def __str__(self):
+        '''Return a string representation of the Product.'''
+        return f'{self.title}'
+
+    def save(self, *args, **kwargs):
+        '''Creates a URL safe slug automatically for each new product.'''
+        if not self.pk:
+            self.slug = slugify(self.title, allow_unicode=True)
+
+        # Call save on the superclass.
+        return super(Product, self).save(*args, **kwargs)
+
+    # Credit for this implementation goes to Dani Roxberry at
+    # https://github.com/UPstartDeveloper/makewiki_v2/blob/master/wiki/models.py
+    def get_absolute_url(self):
+        '''Returns a fully-qualified path for a product.'''
+        path_components = {'slug': self.slug}
+        # return reverse('store:product_detail', kwargs=path_components)
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT,
@@ -41,3 +60,12 @@ class Review(models.Model):
                                         "The date and time this product " +
                                         "was posted. Automatically " +
                                         "generated when the model updates."))
+
+    def __str__(self):
+        '''Return a string representation of the Review.'''
+        return f'{self.headline}'
+
+    def get_absolute_url(self):
+        '''Returns a fully-qualified path for a product related to review.'''
+        path_components = {'slug': self.product.slug}
+        # return reverse('store:product_detail', kwargs=path_components)
