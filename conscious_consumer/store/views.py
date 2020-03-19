@@ -68,12 +68,23 @@ class ProductUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = ProductForm
     template_name = 'store/product/update.html'
     queryset = Product.objects.all()
+    login_url = 'accounts:login'
 
     def test_func(self):
-        '''Ensures the user editing the product is the seller.'''
+        '''Ensures the user editing the product is its seller.'''
         product = self.get_object()
         return (self.request.user == product.seller)
 
 
 class ProductDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    pass
+    '''Allows for removal of Trip instances by User.'''
+    model = Product
+    template_name = 'store/product/delete.html'
+    success_url = reverse_lazy('store:product_list')
+    login_url = 'accounts:login'
+    queryset = Product.objects.all()
+
+    def test_func(self):
+        '''Ensures the user removing the product is its seller.'''
+        product = self.get_object()
+        return (self.request.user == product.seller)
