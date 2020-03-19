@@ -1,6 +1,33 @@
 <!-- conscious_consumer/store/templates/partials/product-card.html -->
-{% extends "base.html" %}
-
-{% block content %}
-
-{% endblock %}
+<div class="card border-info mb-3">
+    <h3 class="card-header border-primary mb-3">
+      {{ product.title }}
+    </h3>
+    <div class="card-body border-dark">
+        <p class="card-text text-dark">
+            <ul>
+                <!-- Product Overview - photo, emissions and price -->
+                {% if product.photo %}
+                    <li class="row">
+                        <img src="{{ product.photo.url }}" alt="Product image">
+                    </li>
+                {% endif %}
+                <li class="row">
+                    <p class="mr-auto">
+                        <strong>Price</strong>: ${{ product.price }}
+                    </p>
+                    <p><strong>Emissions</strong>: {{ product.monthly_emission }} tons per mo.</p>
+                </li>
+            </ul>
+        </p>
+        <hr>
+        <div class="text-right">
+            <a href="{% url 'store:product_detail' product.slug %}" title="See More">See More</a>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <small class="text-muted mr-auto"><strong>Seller</strong>: {{ product.seller }}</small>
+        </div>
+    </div>
+</div>
