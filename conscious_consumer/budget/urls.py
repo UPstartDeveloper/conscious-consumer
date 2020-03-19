@@ -11,9 +11,9 @@ from .views import (
 
 app_name = 'budget'
 urlpatterns = [
+    # Goal-related CRUD URLs - id of user is passed to query string on personal
     path('goals/public/', AllGoalList.as_view(), name="goal_list_public"),
     path('goals/create/', GoalCreate.as_view(), name="goal_create"),
-    # for personal view, id of user is passed to query string
     path('goals/person/<int:pk>/', PersonalGoalList.as_view(),
          name="goal_list_personal"),
     path('goals/<int:pk>/<slug:slug>/', PersonalGoalDetail.as_view(),

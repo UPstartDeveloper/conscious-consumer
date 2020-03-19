@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 
 
+# Goal CRUD
 class AllGoalList(ListView):
     '''User sees goal from all users on the site.'''
     model = Goal
