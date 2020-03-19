@@ -63,7 +63,16 @@ class ProductDetail(DetailView):
 
 
 class ProductUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    pass
+    '''Allows user to update a product.'''
+    model = Product
+    form_class = ProductForm
+    template_name = 'store/product/update.html'
+    queryset = Product.objects.all()
+
+    def test_func(self):
+        '''Ensures the user editing the product is the seller.'''
+        product = self.get_object()
+        return (self.request.user == product.seller)
 
 
 class ProductDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

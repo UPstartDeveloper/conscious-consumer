@@ -2,5 +2,9 @@
 {% extends "base.html "%}
 
 {% block content %}
-
+    <h1>Update Product</h1>
+    <h2>Make a Change in Your Listing</h2>
+    <p>Please fill out the form below./p>
+    {% include 'partials/form.html' %}
+    <a class="btn btn-info" href="{% url 'store:product_detail' product.slug %}">Back to Product</a>
 {% endblock %}
