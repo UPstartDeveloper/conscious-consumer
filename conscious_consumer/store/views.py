@@ -14,7 +14,15 @@ from django.contrib.auth.models import User
 
 # Product CRUD
 class ProductList(ListView):
-    pass
+    model = Product
+    template_name = 'store/product/list.html'
+
+    def get(self, request):
+        '''Shows all products available in the marketplace.'''
+        products = self.get_queryset().all()
+        return render(request, self.template_name, {
+            'products': products
+        })
 
 
 class ProductCreate(LoginRequiredMixin, CreateView):
