@@ -9,7 +9,8 @@ class ProductForm(forms.ModelForm):
             'title',
             'description',
             'photo',
-            'price'
+            'price',
+            'web_link',
         ]
 
 
@@ -18,5 +19,5 @@ class ReviewForm(forms.ModelForm):
         model = Review
         exclude = [
             'author',
-            'modified'
+            'modified',
         ]

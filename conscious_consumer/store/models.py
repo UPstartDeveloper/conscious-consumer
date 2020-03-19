@@ -19,11 +19,12 @@ class Product(models.Model):
                                    "Please include the link, if you're selling"
                                    + " on a different website."))
     photo = models.ImageField(upload_to='images/', null=True, blank=True,
+                              default='images/question-mark-md.png',
                               help_text="Image of the product, if possible.")
     price = models.FloatField(help_text="Cost of product (USD).")
-    seller = models.OneToOneField(dj_conf_settings.AUTH_USER_MODEL,
-                                  on_delete=models.PROTECT,
-                                  help_text="User who posted this product.")
+    seller = models.ForeignKey(dj_conf_settings.AUTH_USER_MODEL,
+                               on_delete=models.PROTECT,
+                               help_text="User who posted this product.")
     monthly_emission = models.FloatField(null=True, blank=True, help_text=(
         "Metric tons of carbon emitted monthly by someone using this product" +
         " or service."))
@@ -31,6 +32,10 @@ class Product(models.Model):
         "Number of available units/customers you are able to service " +
         "currently. Default value: 0. You can always come update this later."
     ))
+    web_link = models.CharField(null=True, blank=True,
+                                max_length=1000, unique=False,
+                                editable=True,
+                                help_text="Link to access payment page.")
 
     def __str__(self):
         '''Return a string representation of the Product.'''

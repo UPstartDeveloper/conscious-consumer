@@ -57,7 +57,7 @@ class ProductDetail(DetailView):
         """
         product = self.get_queryset().get(slug__iexact=slug)
         context = {
-            'product': product
+            'product': product,
         }
         return render(request, self.template_name, context)
 
