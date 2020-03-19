@@ -1,5 +1,5 @@
 <!-- conscious_consumer/budget/templates/budget/partials/personal-goal-summary.html -->
-<div class="card border-info mb-3">
+<div class="card border-info mt-1 mb-3">
     <h3 class="card-header border-primary mb-3">
       {{ goal.title }}
     </h3>
@@ -7,7 +7,13 @@
         <p class="card-text text-dark">
             <ul>
                 <!-- Goal Overview -->
-                <li>{{ goal.description }}/li>
+                <li>{{ goal.description }}</li>
+                {% if goal.achievements %}
+                    <li><strong>Achievements: {{ goal.achievements }}</strong></li>
+                {% endif %}
+                {% if goal.fails %}
+                    <li><strong>Missed Months: {{ goal.fails }}</strong></li>
+                {% endif %}
             </ul>
         </p>
         <hr>

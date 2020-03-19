@@ -12,10 +12,12 @@
     <div class="row mb-3">
         <a href="{% url 'budget:goal_create' %}" class="btn btn-info mr-auto ml-3">Set a New Goal</a>
     </div>
-    <div class="card-columns">
-        {% for goal in goals %}
-            {% include 'partials/personal-goal-summary.html' %}
-        {% endfor %}
+    <div class="row">
+        <div class="col-md-9">
+            {% for goal in goals %}
+                {% include 'partials/personal-goal-summary.html' %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
