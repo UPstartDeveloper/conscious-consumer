@@ -30,7 +30,26 @@ class ProductCreate(LoginRequiredMixin, CreateView):
 
 
 class ProductDetail(DetailView):
-    pass
+    model = Product
+    template_name = 'store/product/detail.html'
+
+    def get(self, request, slug):
+        """Renders a page to show the boarding instructions for a specific
+           Product.
+
+           Parameters:
+           request(HttpRequest): the GET request sent to the server
+           slug(str): unique slug value of the Product instance
+
+           Returns:
+           HttpResponse: the view of the detail template
+
+        """
+        product = self.get_queryset().get(slug__iexact=slug)
+        context = {
+            'product': product
+        }
+        return render(request, self.template_name, context)
 
 
 class ProductUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
