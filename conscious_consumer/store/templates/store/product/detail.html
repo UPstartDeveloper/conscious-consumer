@@ -2,12 +2,43 @@
 {% extends "base.html "%}
 
 {% block content %}
-title
-description
-photo
-price
-monthly_emission
-stock
-seller
+<!-- Title -->
+<div class="row">
+    <h1>{{ product.title }}</h1>
+    <small class="text-muted">Posted by: {{ product.seller }}</small>
+</div>
+<!-- Info -->
+<div class="row">
+    <!--Image -->
+    <div class="col-md-6">
+        <img src="{{ product.photo.url }}" alt="Product image not being displayed.">
+    </div>
+    <!-- Description -->
+    <div class="col-md-6">
+        <h2>Description</h2>
+        <p>{{ product.description }}</p>
+        <!-- Emissions, Price and Stock -->
+        <ul>
+            Need-to-Know's:
+            <li><strong>Avg. Carbon Emissions</strong>: {{ product.monthly_emission }} metric tons per mo.</li>
+            <li><strong>Price</strong>: ${{ product.price }}</li>
+            <li><strong>Stock</strong>: {{ product.stock }} units available</li>
+        </ul>
+    </div>
+</div>
+<!-- Links to Other Product Pages -->
+<div class="row">
+    <!-- Product Update and Delete Forms -->
+    <div class="col-md-6">
+        {% if product.seller == user %}
+            <a class="btn btn-info" href="{% url 'store:product_update' product.slug %}">Edit Product</a>
+            <a class="ml-2 btn btn-danger" href="{% url 'store:product_delete' product.slug %}">Delete Product</a>
+        {% endif %}
+    </div>
+    <!-- Product List Link -->
+    <div class="col-md-6">
+        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to All Products</a>
+    </div>
+</div>
 
 {% endblock %}
