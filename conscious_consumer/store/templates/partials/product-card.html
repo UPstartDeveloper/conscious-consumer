@@ -8,15 +8,18 @@
             <ul>
                 <!-- Product Overview - photo, emissions and price -->
                 {% if product.photo %}
-                    <li class="row">
+                    <li class="row mb-3">
                         <img src="{{ product.photo.url }}" alt="Product image">
                     </li>
                 {% endif %}
                 <li class="row">
-                    <p class="mr-auto">
-                        <strong>Price</strong>: ${{ product.price }}
-                    </p>
-                    <p><strong>Emissions</strong>: {{ product.monthly_emission }} tons per mo.</p>
+                    <strong>Price</strong>: ${{ product.price }}
+                </li>
+                <li class="row">
+                    <strong>Emissions</strong>: {{ product.monthly_emission }} tons per mo.
+                </li>
+                <li class="row">
+                    <strong>Stock</strong>: {{ product.stock }} units
                 </li>
             </ul>
         </p>
