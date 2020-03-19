@@ -1,5 +1,5 @@
 <!-- conscious_consumer/store/templates/store/product/update.html -->
-{% extends "base.html "%}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -8,6 +8,7 @@
     <p>Please fill out the form below./p>
     <!-- Update Form -->
         {% include 'partials/form.html' %}
+        <br>
         <a class="btn btn-info" href="{% url 'store:product_detail' product.slug %}">Back to Product</a>
-        
+
 {% endblock %}

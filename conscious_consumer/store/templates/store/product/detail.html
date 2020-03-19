@@ -1,12 +1,12 @@
 <!-- conscious_consumer/store/templates/store/product/detail.html -->
-{% extends "base.html "%}
+{% extends "base.html" %}
 
 {% block content %}
 
     <!-- Title -->
     <div class="row">
         <h1>{{ product.title }}</h1>
-        <small class="text-muted">Posted by: {{ product.seller }}</small>
+        <p class="ml-auto text-muted">Posted by: {{ product.seller }}</p>
     </div>
     <!-- Info -->
     <div class="row">
@@ -25,8 +25,11 @@
                 <li><strong>Price</strong>: ${{ product.price }}</li>
                 <li><strong>Stock</strong>: {{ product.stock }} units available</li>
             </ul>
+            <!-- Pay Now (goes to 3rd Party Site for Now) -->
+            <a class="btn btn-success" href="#">Buy Now!</a>
         </div>
     </div>
+    <br><br>
     <!-- Links to Other Product Pages -->
     <div class="row">
         <!-- Product Update and Delete Forms -->
@@ -36,9 +39,11 @@
                 <a class="ml-2 btn btn-danger" href="{% url 'store:product_delete' product.slug %}">Delete Product</a>
             {% endif %}
         </div>
-        <!-- Product List Link -->
+        <br><br>
+        <!-- Product List and Create Links -->
         <div class="col-md-6">
-            <a href="{% url 'product_list' %}" class="btn btn-primary">Back to All Products</a>
+            <a href="{% url 'store:product_list' %}" class="btn btn-primary">Back to All Products</a>
+            <a href="{% url 'store:product_create' %}" class="btn btn-success">Add Product Listing</a>
         </div>
     </div>
 

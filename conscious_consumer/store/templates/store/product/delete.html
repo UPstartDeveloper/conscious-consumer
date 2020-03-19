@@ -1,5 +1,5 @@
 <!-- conscious_consumer/store/templates/store/product/delete.html -->
-{% extends "base.html "%}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -8,11 +8,11 @@
     <p><strong>This action cannot be undone. </strong>Are you sure you would like to continue?</p>
     <!-- Delete Form -->
     <div class="row">
-        <form class="mr-2" method="post">
+        <form class="ml-3 mr-3" method="post">
             {% csrf_token %}
             <input type="submit" class="btn btn-danger" value="Delete">
         </form>
-        <a href="{% url 'store:product_detail' product.slug %}">Back to Product</a>
+        <a class="btn btn-info" href="{% url 'store:product_detail' product.slug %}">Back to Product</a>
     </div>
-    
+
 {% endblock %}

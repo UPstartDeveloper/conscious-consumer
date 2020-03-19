@@ -1,5 +1,5 @@
 <!-- conscious_consumer/store/templates/store/product/list.html -->
-{% extends "base.html "%}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -7,18 +7,18 @@
     <h2>Shop below for new ways to live greener!</h2>
     <!-- Link to Add a Product -->
     <a href="{% url 'store:product_create' %}" class="btn btn-success">Add Product Listing</a>
-    <div class="card-columns">
-        <!-- display all products in store right now -->
-        {% if products %}
+    <!-- display all products in store right now -->
+    {% if products %}
+        <div class="card-columns">
             {% for product in products %}
                 {% include 'partials/product-card.html' %}
             {% endfor %}
-        <!-- Otherwise show an alert there are no products in stock right now -->
-        {% else %}
-        <div class="alert alert-info" role="alert">
-            <p>Looks like inventory is a little light right now - please check back soon!</p>
         </div>
-        {% endif %}
+    <!-- Otherwise show an alert there are no products in stock right now -->
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        <p>Looks like inventory is a little light right now - please check back soon!</p>
     </div>
+    {% endif %}
 
 {% endblock %}

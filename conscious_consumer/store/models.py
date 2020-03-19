@@ -49,7 +49,7 @@ class Product(models.Model):
     def get_absolute_url(self):
         '''Returns a fully-qualified path for a product.'''
         path_components = {'slug': self.slug}
-        # return reverse('store:product_detail', kwargs=path_components)
+        return reverse('store:product_detail', kwargs=path_components)
 
 
 class Review(models.Model):
