@@ -24,6 +24,13 @@ class Product(models.Model):
     seller = models.OneToOneField(dj_conf_settings.AUTH_USER_MODEL,
                                   on_delete=models.PROTECT,
                                   help_text="User who posted this product.")
+    monthly_emission = models.FloatField(null=True, blank=True, help_text=(
+        "Metric tons of carbon emitted monthly by someone using this product" +
+        " or service."))
+    stock = models.IntegerField(default=0, help_text=(
+        "Number of available units/customers you are able to service " +
+        "currently. Default value: 0. You can always come update this later."
+    ))
 
     def __str__(self):
         '''Return a string representation of the Product.'''
