@@ -1,6 +1,28 @@
 <!-- conscious_consumer/templates/index.html -->
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Data -->
+            {% include 'partials/meta.html' %}
+    </head>
+    <body>
 
-{% block content %}
-    <h1>Hello World!</h1>
-{% endblock %}
+        <!-- NAVBAR -->
+            {% include 'partials/navbar.html' %}
+
+        <!-- HERO -->
+        <div class="jumbotron mt-0 mb-0">
+            <div class="container mt-0 mb-0">
+                <!-- BENEFITS -->
+
+                <!-- Call to ACTION -->
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="bg-light mt-0 mb-0">
+            {% include 'partials/footer.html' %}
+        </div>
+    </body>
+</html>
