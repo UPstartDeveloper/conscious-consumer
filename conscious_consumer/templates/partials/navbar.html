@@ -7,7 +7,7 @@
             <div class="row">
                 <img src="{% static 'images/internet.png' %}" width=50px height=50px>
                 <h2>
-                    <a class="ml-1"href="{% url 'landing_page' %}" style="color: white;">
+                    <a class="ml-1" href="{% url 'landing_page' %}" style="color: white;">
                         <!-- Site brand label chnages based on authentication -->
                         {% if not user.is_authenticated %}
                             Conscious Consumer
@@ -15,7 +15,6 @@
                             Hello, {{ user.username }}!
                         {% endif %}
                     </a>
-
                 </h2>
             </div>
         </span>

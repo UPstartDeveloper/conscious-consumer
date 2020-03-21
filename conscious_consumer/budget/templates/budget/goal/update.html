@@ -18,7 +18,9 @@
 <!-- Update Form -->
 <h3>Edit your Goal Below</h3>
 {% include 'partials/form.html' %}
-<a href="{% url 'budget:goal_detail_personal' user.id goal.slug %}" class="mt-2 btn btn-info">Back to Goal Page</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'budget:goal_detail_personal' user.id goal.slug %}" class="mt-2 btn btn-info">Back to Goal Page</a>
+    {% endif %}
 
 <!-- Motivational Quote -->
 <div class="row mt-2">

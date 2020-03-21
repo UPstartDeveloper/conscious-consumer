@@ -7,10 +7,12 @@
 <p>Curious what we're up to? <br>
     Check out all goals Conscious Consumer have set below! <br>
     <!-- Link to other goals page -->
+    {% if user.is_authenticated %}
         <a href="{% url 'budget:goal_list_personal' user.id %}">
             To see only your own goals: be sure to log in,
             and then click here!
         </a>
+    {% endif %}
 </p>
 <!-- List of all goals -->
     <!-- Link to Create a Goal -->
@@ -19,7 +21,7 @@
     </div>
     <div class="card-columns">
         {% for goal in goals %}
-            {% include 'partials/personal-goal-summary.html' %}
+            {% include 'partials/common-goal-summary.html' %}
         {% endfor %}
     </div
 

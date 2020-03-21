@@ -4,22 +4,62 @@
 <html lang="en">
     <head>
         <!-- Meta Data -->
-            {% include 'partials/meta.html' %}
+        {% include 'partials/meta.html' %}
     </head>
     <body>
-
         <!-- NAVBAR -->
-            {% include 'partials/navbar.html' %}
-
+        {% include 'partials/navbar.html' %}
         <!-- HERO -->
-        <div class="jumbotron mt-0 mb-0">
+        <div class="jumbotron mt-0 mb-0"
+            style="background-image: url('https://i.postimg.cc/Sx7qdsJm/benjamin-suter-9-Iq-Iw-OD65-X0-unsplash.jpg'); height: 900px; background-size: cover; background-repeat: no-repeat;">
+            <div class="mt-0 mb-0" style="color: white;">
+                <h1 class="display-3 text-white">Carbon Has Got to Go</h1>
+                <p class="lead">Your Time is Now - Become a Conscious Consumer</p>
+            </div>
+            <hr class="my-4">
+            <br>
+            <!-- BENEFITS -->
             <div class="container mt-0 mb-0">
-                <!-- BENEFITS -->
-
-                <!-- Call to ACTION -->
+                <h2>Why Conscious Consumer?</h2>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-4">
+                        <div class="card border-info mb-3" style="max-width: 20rem;">
+                            <h4 class="card-header">Take Control</h4>
+                            <img src="https://i.postimg.cc/sgN2SMqX/kelly-sikkema-ncrwr-ZBWMe0-unsplash.jpg" class="img-fluid rounded" alt="">
+                            <div class="card-body">
+                                <p class="card-text">Live well, and live with awareness of your carbon budget.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-info mb-3" style="max-width: 20rem;">
+                            <h4 class="card-header">Track Progress</h4>
+                            <img src="https://i.postimg.cc/RZszJwk6/Screen-Shot-2020-03-20-at-5-17-51-PM.png" class="img-fluid rounded" alt="">
+                            <div class="card-body">
+                                <p class="card-text">See your emissions level down over time with our data visualizations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-info mb-3" style="max-width: 20rem;">
+                            <h4 class="card-header">Get Connected</h4>
+                            <img src="https://i.postimg.cc/vZcYQQTd/tyler-casey-bs-Jc2kf4ds-unsplash.jpg" class="img-fluid rounded" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">Stay in the know with all the latest in green innovation that can assist you!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Call to ACTION: Sign up -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center mb-0">
+                            <a href="{% url 'accounts:signup' %}" class="btn-lg btn-primary ml-2">Get Started</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
         <!-- FOOTER -->
         <div class="bg-light mt-0 mb-0">
             {% include 'partials/footer.html' %}

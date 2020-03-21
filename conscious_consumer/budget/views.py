@@ -17,13 +17,13 @@ class AllGoalList(ListView):
     '''User sees goal from all users on the site.'''
     model = Goal
     template_name = 'budget/goal/list-all.html'
+    queryset = Goal.objects.all()
 
     def get(self, request):
         '''Render a context containing all Goal instances.'''
-        goals = self.get_queryset().all()
-        return render(request, self.template_name, {
-            'goals': goals
-        })
+        goals = self.queryset
+        context = {'goals': goals}
+        return render(request, self.template_name, context)
 
 
 class PersonalGoalList(ListView):
