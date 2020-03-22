@@ -4,10 +4,12 @@ from django.views.generic.edit import (
     CreateView,
     UpdateView,
     DeleteView)
+from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Profile
 from .forms import SignUpForm
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 class SignupView(SuccessMessageMixin, CreateView):
@@ -23,3 +25,31 @@ class SignupView(SuccessMessageMixin, CreateView):
         profile = Profile.objects.create(user=self.object)
         profile.save()
         return super().form_valid(form)
+
+
+class ProfileDetail(UserPassesTestMixin, DetailView):
+    model = Profile
+    template_name = 'accounts/profile/detail.html'
+
+    def get(self, request, pk):
+        """Renders a page to show the details for a specific User and the
+           related profile.
+
+           Parameters:
+           request(HttpRequest): the GET request sent to the server
+           pk(int: unique id of the Profile being requested
+
+           Returns:
+           HttpResponse: the view of public template
+
+        """
+        profile = self.model.objects.get(id=pk)
+        context = {
+            'profile': profile
+        }
+        return render(request, self.template_name, context)
+
+    def test_func(self):
+        '''Ensure that the user is viewing their own profile.'''
+        profile = self.get_object()
+        return profile.user == self.request.user
