@@ -74,7 +74,7 @@ class PersonalGoalDetail(DetailView):
             return render(request, template, context)
         # otherwise display the public template
         else:
-            return redirect(goal.get_absolute_url())
+            return redirect(goal.get_absolute_url_public())
 
 
 class PublicGoalDetail(DetailView):
@@ -112,6 +112,11 @@ class GoalCreate(UserPassesTestMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def get_success_url(self):
+        '''Returns a fully-qualified path to the Goal's personal details.'''
+        url = self.object.get_absolute_url_public()
+        return url
+
     def test_func(self):
         '''Restrict viewing of the form to authenticated users.'''
         return self.request.user.is_authenticated is True
@@ -123,6 +128,12 @@ class GoalUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = GoalForm
     template_name = 'budget/goal/update.html'
     queryset = Goal.objects.all()
+
+    def get_success_url(self):
+        '''Returns a fully-qualified path to the Goal's personal details.'''
+        goal = self.get_object()
+        id = self.request.user.id
+        return goal.get_absolute_url_personal(id)
 
     def test_func(self):
         '''Ensures the user editing the goal is its author.'''

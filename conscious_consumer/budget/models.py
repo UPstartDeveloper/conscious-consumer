@@ -85,10 +85,18 @@ class Goal(models.Model):
 
     # Credit for this implementation goes to Dani Roxberry at
     # https://github.com/UPstartDeveloper/makewiki_v2/blob/master/wiki/models.py
-    def get_absolute_url(self):
-        '''Returns a fully-qualified path for a goal (uses public page).'''
+    def get_absolute_url_public(self):
+        '''Returns a path for a goal (uses public page). Follows GoalCreate.'''
         path_components = {'slug': self.slug}
         return reverse('budget:goal_detail_public', kwargs=path_components)
+
+    def get_absolute_url_personal(self, id):
+        '''Returns a path for a goal (uses public page). Follows GoalUpdate.'''
+        path_components = {
+            'pk': id,
+            'slug': self.slug
+        }
+        return reverse('budget:goal_detail_personal', kwargs=path_components)
 
 
 class Comment(models.Model):
