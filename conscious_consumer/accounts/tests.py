@@ -12,6 +12,7 @@ class SignupViewTests(TestCase):
     '''User signup for an account and also receive a profile in the db.'''
     def setUp(self):
         '''Site visitor information relevant to each test.'''
+        self.factory = RequestFactory()
         self.visitor = AnonymousUser()
         self.visitor_info = {
             'username': 'zainraza',
@@ -23,6 +24,7 @@ class SignupViewTests(TestCase):
                                 email=self.visitor_info.get('email'),
                                 password=self.visitor_info.get('pass_1'))
         )
+        self.url = 'accounts:signup'
 
     def test_get_signup_form(self):
         '''Site visitor is able to see the form to sign up for an account.'''
@@ -46,7 +48,18 @@ class SignupViewTests(TestCase):
         """
         An authenticated user is no longer able to fill out the signup form.
         """
-        pass
+        # user is logged in already
+        self.assertEqual(self.user.is_authenticated, True)
+        # user visits the signup page
+        request = self.factory.get(self.url)
+        request.user = self.user
+        response = SignupView.as_view()(request)
+        # page is able to render
+        self.assertEqual(response.status_code, 200)
+        # user sees a message different from a site visitor
+        self.assertContains(response,
+                            "Looks like you already have an account. " +
+                            "We appreciate you for joining us!")
 
 
 class ProfileDetailTests(TestCase):
