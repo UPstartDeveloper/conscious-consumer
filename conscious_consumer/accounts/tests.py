@@ -1,3 +1,18 @@
 from django.test import TestCase
+from django.test.client import RequestFactory
+from django.contrib.auth.models import User
+from .models import Profile
+from .views import (
+    SignupView,
+    ProfileDetail,
+)
 
-# Create your tests here.
+
+class SignupViewTests(TestCase):
+    '''User signup for an account and also receive a profile in the db.'''
+    pass
+
+
+class ProfileDetailTests(TestCase):
+    '''User is able to see the details specific to their own account.'''
+    pass
