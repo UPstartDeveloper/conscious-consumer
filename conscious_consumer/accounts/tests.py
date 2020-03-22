@@ -10,9 +10,13 @@ from .views import (
 
 class SignupViewTests(TestCase):
     '''User signup for an account and also receive a profile in the db.'''
-    pass
+    def setUp(self):
+        '''Site visitor information relevant  to each test.'''
+        pass
 
 
 class ProfileDetailTests(TestCase):
     '''User is able to see the details specific to their own account.'''
-    pass
+    def setUp(self):
+        '''User information relevant to each test.'''
+        pass
