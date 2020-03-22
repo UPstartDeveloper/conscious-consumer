@@ -27,7 +27,7 @@ class SignupView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProfileDetail(UserPassesTestMixin, DetailView):
+class ProfileDetail(DetailView):
     model = Profile
     template_name = 'accounts/profile/detail.html'
 
@@ -51,5 +51,5 @@ class ProfileDetail(UserPassesTestMixin, DetailView):
 
     def test_func(self):
         '''Ensure that the user is viewing their own profile.'''
-        profile = self.get_object()
-        return profile.user == self.request.user
+        user = self.get_object()
+        return user.profile == self.request.user.profile
