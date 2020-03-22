@@ -1,6 +1,9 @@
 # conscious-consumer
 Fitbit for living a green life.
 
+## Release Schedule
+Please see [Releases.md](Releases.md) for details on version history. Includes the features included in each release, and the date on which that release was launched.
+
 ## Acknowledgements
 Earth icon made by [Freepik](https://www.flaticon.com/authors/freepik) on [Flaticon](https://flaticon.com/).
 
