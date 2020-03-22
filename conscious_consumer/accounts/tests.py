@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from .models import Profile
 from .views import (
     SignupView,
@@ -12,6 +12,17 @@ class SignupViewTests(TestCase):
     '''User signup for an account and also receive a profile in the db.'''
     def setUp(self):
         '''Site visitor information relevant to each test.'''
+        self.visitor = AnonymousUser()
+        self.visitor_info = {
+            'username': 'zainraza',
+            'email': 'zainr7989@gmail.com',
+            'pass_1': 'who_is_typing_this_9'
+        }
+        self.user = (
+            User.objects.create(username=self.visitor_info.get('username'),
+                                email=self.visitor_info.get('email'),
+                                password=self.visitor_info.get('pass_1'))
+        )
 
     def test_get_signup_form(self):
         '''Site visitor is able to see the form to sign up for an account.'''
@@ -28,6 +39,12 @@ class SignupViewTests(TestCase):
         """
         The site visitor fails to confirm their password, and the form renders
         itself again with an error message.
+        """
+        pass
+
+    def test_authenticated_user_accesses_form(self):
+        """
+        An authenticated user is no longer able to fill out the signup form.
         """
         pass
 
