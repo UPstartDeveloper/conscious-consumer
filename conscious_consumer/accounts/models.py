@@ -21,12 +21,10 @@ class Profile(models.Model):
         '''Return the related User's username.'''
         return f"{self.user.username}'s Profile"
 
-    """
     def get_absolute_url(self):
         '''Returns a fully qualified path for user profile.'''
-        path_components = {'pk': self.user.id}
-        return reverse('accounts:acct_info', kwargs=path_components)
-    """
+        path_components = {'pk': self.id}
+        return reverse('accounts:profile_detail', kwargs=path_components)
 
 
 class Interest(models.Model):
