@@ -1,5 +1,32 @@
-# conscious-consumer
+![Brand Image](https://i.postimg.cc/kgPFx4cP/Screen-Shot-2020-03-23-at-12-43-12-PM.png)
+
+# Conscious Consumer
 Fitbit for living a green life.
+
+## Table of Contents
+1. [The Why](#the-why)
+2. [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [How to Contribute To This Project](#how-to-contribute-to-this-project)
+    - [Installing Requirements](#installing-requirements)
+3. [Running the Tests](#running-the-tests)
+4. [Technologies Used](#technologies-used)
+5. [How to Contribute](#how-to-contribute)
+6. [License](#license)
+7. [Release Schedule](#release-schedule)
+8. [Acknowledgements](#acknowledgements)
+
+## The Why
+
+## Getting Started
+
+## Running the Tests
+
+## Technologies Used
+
+## How to Contribute
+
+## License
 
 ## Release Schedule
 Please see [Releases.md](Releases.md) for details on version history. Includes the features included in each release, and the date on which that release was launched.
