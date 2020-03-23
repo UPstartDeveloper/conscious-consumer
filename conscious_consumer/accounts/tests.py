@@ -1,11 +1,13 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.messages.storage.fallback import FallbackStorage
 from .models import Profile
 from .views import (
     SignupView,
     ProfileDetail,
 )
+from django.urls import reverse, reverse_lazy
 
 
 class SignupViewTests(TestCase):
@@ -60,7 +62,18 @@ class SignupViewTests(TestCase):
         The visitor enters valid data, the User and Profile objects are made,
         and then the site visitor is redirected to the login page.
         """
-        pass
+        # a site visitor fills out the signup form
+        form_data = {
+            'username': self.visitor_info.get('username'),
+            'email': self.visitor_info.get('email'),
+            'password1': self.visitor_info.get('pass_1'),
+            'password2': self.visitor_info.get('pass_1')
+        }
+        request = self.factory.post(self.url, form_data)
+        request.user = self.visitor
+        response = SignupView.as_view()(request)
+        # user is redirected
+        self.assertEqual(response.status_code, 302)
 
     def test_form_password_no_match(self):
         """
