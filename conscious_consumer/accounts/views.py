@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Profile
-from .forms import SignUpForm
+from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 
@@ -27,7 +27,7 @@ class SignupView(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProfileDetail(DetailView):
+class ProfileDetail(UserPassesTestMixin, DetailView):
     model = Profile
     template_name = 'accounts/profile/detail.html'
 
@@ -51,5 +51,18 @@ class ProfileDetail(DetailView):
 
     def test_func(self):
         '''Ensure that the user is viewing their own profile.'''
-        user = self.get_object()
-        return user.profile == self.request.user.profile
+        profile = self.get_object()
+        return profile.user == self.request.user
+
+
+class ProfileUpdate(UserPassesTestMixin, UpdateView):
+    '''A user uploads their profile image through a form.'''
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'accounts/profile/change-picture.html'
+    queryset = Profile.objects.all()
+
+    def test_func(self):
+        '''Ensure that the user is viewing their own profile.'''
+        profile = self.get_object()
+        return profile.id == self.request.user.profile.id
