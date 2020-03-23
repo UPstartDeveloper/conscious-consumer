@@ -2,6 +2,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Log Out Button -->
-    <a href="{% url 'accounts:logout' %}" class="btn btn-danger">Log Out</a>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Greeting -->
+            <h1 class="mb-5">Account Details</h1>
+            <!-- User Info -->
+            <div class="row">
+                <ul>
+                    <strong>Account Information:</strong>
+                    <li>Username: {{ user.username }}</li>
+                    <li>Email: {{ user.email }}</li>
+                </ul>
+            </div>
+            <div class="row">
+                <!-- Update User Info -->
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-info">Update Account</a>
+                </div>
+                <!-- Change Password -->
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-info">Change Password</a>
+                </div>
+                <!-- Delete Account -->
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-danger">Delete Account</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Profile Image -->
+            <div class="row">
+                <img src="{{ profile.mugshot.url }}" alt="Profile image" height=400px width=400px>
+            </div>
+            <div class="row">
+                <!-- Change Profile Image -->
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-outline-secondary">Upload Image</a>
+                </div>
+                <!-- See Personal Goals -->
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-outline-info">See Goals</a>
+                </div>
+                <!-- Log Out -->
+                <div class="col-md-4">
+                    <a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
