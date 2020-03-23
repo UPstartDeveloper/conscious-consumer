@@ -5,27 +5,38 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Greeting -->
-            <h1 class="mb-5">Account Details</h1>
+            <h1 class="mb-4">Account Details</h1>
             <!-- User Info -->
             <div class="row">
+                <h2 class="ml-3 mr-3">Profile Information:</h2>
                 <ul>
-                    <strong>Account Information:</strong>
                     <li>Username: {{ user.username }}</li>
                     <li>Email: {{ user.email }}</li>
                 </ul>
             </div>
+            <!-- Links to Other Pages -->
             <div class="row">
-                <!-- Update User Info -->
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-info">Update Account</a>
+                <div class="col-md-6">
+                    <a href="#" class="btn btn-info mb-2">Update Account</a>
                 </div>
-                <!-- Change Password -->
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-info">Change Password</a>
+                <div class="col-md-6">
+                    <a href="#" class="btn btn-outline-secondary mr-2 mb-3">Upload Image</a>
                 </div>
-                <!-- Delete Account -->
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-danger">Delete Account</a>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="#" class="btn btn-info mb-2">Change Password</a>
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="btn btn-outline-info mr-5 mb-3">See Goals</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="#" class="btn btn-danger mb-2">Delete Account</a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Log Out</a>
                 </div>
             </div>
         </div>
@@ -33,20 +44,6 @@
             <!-- Profile Image -->
             <div class="row">
                 <img src="{{ profile.mugshot.url }}" alt="Profile image" height=400px width=400px>
-            </div>
-            <div class="row">
-                <!-- Change Profile Image -->
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-outline-secondary">Upload Image</a>
-                </div>
-                <!-- See Personal Goals -->
-                <div class="col-md-4">
-                    <a href="#" class="btn btn-outline-info">See Goals</a>
-                </div>
-                <!-- Log Out -->
-                <div class="col-md-4">
-                    <a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Log Out</a>
-                </div>
             </div>
         </div>
     </div>
