@@ -23,7 +23,7 @@
                     <a href="#" class="btn btn-info mb-2">Change Password</a>
                 </div>
                 <div class="col-md-6">
-                    <a href="#" class="btn btn-outline-info mr-5 mb-3">See Goals</a>
+                    <a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-outline-info mr-5 mb-3">Personal Goals</a>
                 </div>
             </div>
             <div class="row ml-2">
