@@ -27,11 +27,11 @@ class Goal(models.Model):
                                                "was updated. Automatically " +
                                                "generated when the model " +
                                                "updates."))
-    achievements = models.IntegerField(help_text=(
+    achievements = models.PositiveIntegerField(help_text=(
         "The number of time periods you have met this goal. " +
         "Start at 0 - honor system!"
     ))
-    fails = models.IntegerField(help_text=(
+    fails = models.PositiveIntegerField(help_text=(
         "The number of time periods you have missed this goal. " +
         "Start at 0 - honor system!"
     ))
