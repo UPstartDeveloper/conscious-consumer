@@ -1,12 +1,13 @@
 ![Brand Image](https://i.postimg.cc/kgPFx4cP/Screen-Shot-2020-03-23-at-12-43-12-PM.png)
 
 # Conscious Consumer
-Fitbit for living a green life.
+Fitbit for living a green life. [See it Now.](https://consciousconsumer.herokuapp.com)
 
 ## Table of Contents
 1. [The Why](#the-why)
 2. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
+    - [Forking this Repository](#forking-the-repository)
     - [Installing Requirements](#installing-requirements)
     - [Run the Project Locally](#run-the-project-locally)
 3. [Running the Tests](#running-the-tests)
@@ -17,12 +18,83 @@ Fitbit for living a green life.
 8. [Acknowledgements](#acknowledgements)
 
 ## The Why
+[Conscious Consumer](https://consciousconsumer.herokuapp.com) is a website that everyday people use to track their carbon footprint. Let's face it: have you stopped to wonder what the cost is to the environment, every time you emit carbon into the atmosphere?
+
+Carbon is a resource just as valuable as our personal health, or the our financial resources. Just like those resources, it carries a heavy cost if taken in excess.
+
+If we're willing to make budgets for our weight to preserve our health, and our spending to preserve our wealth, then it's time we do the same for our carbon, to preserve the health of our environment and the value of this planet we call home.
+
+Please take a look at the following for more context around the idea behind the [Conscious Consumer](https://consciousconsumer.herokuapp.com) project:
+- [Slide Deck](https://docs.google.com/presentation/d/1wwWKidDJWLG8-76DlfuFllWm_-uxG6_qBJTMm3xahig/edit?usp=sharing)
+- Technical Write-Up (Coming Soon, date TBD)
 
 ## Getting Started
-
 ### Prerequisites
+- Must have Git installed
+- Must have a GitHub account
+- Must have Python 3.7.* installed
+- Must know how to work in a [Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/)
+(Docker should work as well, I've just never used it before)
+
+### Forking this Repository
+If you would like to improve this project in some way (much appreciated!), then please follow these steps to fork the repository:
+1. Fork this repository (click the "Fork" button at the top right of the page, then click on your profile image).
+- Clone your forked repository onto your local machine
+```
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/conscious-consumer.git
+```
+- Start your virtual environment, and be sure to see the 'Installing Requirements' section below to make sure you have all the required dependencies!
+
+- Create a new branch for the feature you want to work on, or the bug fix you want to make:
+```
+git checkout -b feature/branch-name or bugfix/branch-name
+```
+- Make your changes (be sure to commit and push!)
+```
+git add .
+git commit -m "[YOUR COMMIT MESSAGE HERE]"
+git push origin branch-name
+```
+
+### How to Contribute
+When you are ready to push the branch of your forked repo, please make the following edits to the list on the [CONTRIBUTORS.md](CONTRIBUTORS.md) file. You can use the snippet of Markdown code to get you started. Be sure to leave personalized responses in between wherever you see <>.
+```
+**<list item number>. <Your Name> **, *<brief description of how you helped this project>
+- **Description**: <personal description about yourself>
+- **Location**: <where you currently reside>
+- **Fun Fact**: <what do you think most people don't know about you?>
+- **Find Me**: <[YOUR_NAME](Link to your GitHub Account, social media, or other personal link)>
+```
+Once you have pushed your branch, go to your fork on GitHub and open a pull request. The team will then evaluate it to see if it can be merged. If not, we will give you feedback explaining why.
+
+Note that although highly suggested, you are not required to add a fun fact or a link to your entry in the contributors file. Thanks for helping out!
+
 ### Installing Requirements
+
+Start by forking this repository (button is in the top right), and then clone your version onto your local machine.
+
+Before anything else - *be sure to start a virtual environment!*
+
+Once you have activated your Python virtual environment, please be sure to run the following command from the command line, to ensure you have all the dependencies
+you may need to use for this project:
+```
+python -m pip install -r requirements.txt
+```
+You may always double check the dependencies you have using this command:
+```
+python -m pip list
+```
+If you install any new dependencies, please be sure to record them! While in the ```conscious_consumer/``` directory, run the following command:
+```
+python -m pip freeze > requirements.txt
+```
+Thank you in advance for contributing to this project!
 ### Run the Project Locally
+    From the same ```conscious_consumer/``` directory, you can run this project locally using the following command:
+    ```
+    python manage.py runserver
+    ```
+    There is much more to the Django framework for Python - if you are ensure of how to do something for the backend of this project, be sure to refer to the stellar [Django documentation](https://docs.djangoproject.com).
 
 ## Running the Tests
 Be sure that your virtual environment is activated.
@@ -37,7 +109,7 @@ Observe the output to determine whether your version of this project fails or pa
 #### For a Single App
 If you are interested in running the tests associated with only a single app in the project, you can run the same command as above, and then at the end include the name of the specific app as well.
 
-There are currently 3 Django apps in this project. They are referenced from the command line as follows:
+There are currently three Django apps in this project. They are referenced from the command line as follows:
 - ```accounts```
 - ```budget```
 - ```store```
@@ -48,16 +120,12 @@ python manage.py test budget
 If at any point you have trouble analyzing tests, feel free to look inside the ```tests.py``` module in each of the above app directories.
 
 ## Technologies Used
-
-## How to Contribute
-On the branch of your forked repo, please make the following edits to the list on the [CONTRIBUTORS](CONTRIBUTORS) file. You can use the snippet of Markdown code to get you started. Be sure to leave personalized responses in between wherever you see <>.
-```
-**<list item number>. <Your Name> **, *<brief description of how you helped this project>
-- **Description**: <personal description about yourself>
-- **Location**: <where you currently reside>
-- **Fun Fact**: <what do you think most people don't know about you?>
-```
-Note that although highly suggested, you are not required to add a fun fact to your entry in the contributors file. Thanks for helping out!
+- Django - web framework for the backend
+- Bootstrap 4 - styling the front end
+- PostgreSQL - production database schema
+- Django REST Framework - framework building the API (found in the [conscious_consumer.api package](conscious_consumer/api/)).
+- AWS S3 - cloud storage for image uploads
+- Heroku - deployment on a production server
 
 ## License
 This repository is completely open-source, and carries the MIT license. Please see [LICENSE](LICENSE) for more details.
@@ -66,15 +134,15 @@ This repository is completely open-source, and carries the MIT license. Please s
 Please see [Releases.md](Releases.md) for details on version history. Includes the features included in each release, and the date on which that release was launched.
 
 ## Acknowledgements
-Earth icon made by [Freepik](https://www.flaticon.com/authors/freepik) on [Flaticon](https://flaticon.com/).
+1. Earth icon made by [Freepik](https://www.flaticon.com/authors/freepik) on [Flaticon](https://flaticon.com/).
 
-[User icon](https://www.flaticon.com/free-icon/male-user-shadow_16480) by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](https://www.flaticon.com/).
+2. [User icon](https://www.flaticon.com/free-icon/male-user-shadow_16480) by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](https://www.flaticon.com/).
 
-Products found through Phil Sturgeon's [Awesome Earth](https://github.com/philsturgeon/awesome-earth#footprint-calculators) open-source project on GitHub.
+3. Products found through Phil Sturgeon's [Awesome Earth](https://github.com/philsturgeon/awesome-earth#footprint-calculators) open-source project on GitHub.
 
-Photos on home page come from the following creators on Unsplash:
+4. Photos on home page come from the following creators on Unsplash:
 - Drone picture by [Tyler Casey](https://unsplash.com/@tylercaseyprod)
 - "Empower" image by [Kelly Sikkema](https://unsplash.com/@kellysikkema)
 - Background image by [Benjamin Suter](https://unsplash.com/@benjaminjsuter)
 
-Lastly, a big thank you goes to Mom and Dad - thanks so much for your supporting me throughout my time at Make School! - Zain, *March 23, 2020*
+5. Lastly, a big thank you goes to Mom and Dad - thanks so much for your supporting me throughout my time at Make School! - Zain, *March 23, 2020*

@@ -8,3 +8,4 @@ Please scroll through the list below, to learn more about the people who have he
 - **Description**: Software engineer committed to making a difference on the planet through technology.
 - **Location**: San Francisco, CA, United States
 - **Fun Fact**: I always try to say hi to everyone I meet on my way to [Make School!](https://makeschool.com)
+- **Find Me**: [Link to My GitHub Account](https://github.com/UPstartDeveloper)
