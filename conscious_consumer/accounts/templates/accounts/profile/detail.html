@@ -15,15 +15,10 @@
                 </ul>
             </div>
             <!-- Links to Other Pages -->
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="#" class="btn btn-info mb-2">Update Account</a>
-                </div>
-                <div class="col-md-6">
-                    <a href="#" class="btn btn-outline-secondary mr-2 mb-3">Upload Image</a>
-                </div>
+            <div class="row ml-2">
+                <h3>Options</h3>
             </div>
-            <div class="row">
+            <div class="row ml-2">
                 <div class="col-md-6">
                     <a href="#" class="btn btn-info mb-2">Change Password</a>
                 </div>
@@ -31,7 +26,7 @@
                     <a href="#" class="btn btn-outline-info mr-5 mb-3">See Goals</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-2">
                 <div class="col-md-6">
                     <a href="#" class="btn btn-danger mb-2">Delete Account</a>
                 </div>
@@ -42,8 +37,15 @@
         </div>
         <div class="col-md-6">
             <!-- Profile Image -->
-            <div class="row">
+            <div class="row justify-content-center">
                 <img src="{{ profile.mugshot.url }}" alt="Profile image" height=400px width=400px>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a href="#" class="btn btn-outline-secondary mr-2 mb-3">Upload Image</a>
+                </div>
+                <div class="col-md-4"></div>
             </div>
         </div>
     </div>
