@@ -25,10 +25,39 @@ Fitbit for living a green life.
 ### Run the Project Locally
 
 ## Running the Tests
+Be sure that your virtual environment is activated.
+
+#### For the Whole Project
+In the outer conscious_consumer/ directory where ```manage.py```, run the following command to evaluate the automated tests for this project:
+```
+python manage.py test
+```
+Observe the output to determine whether your version of this project fails or passes.
+
+#### For a Single App
+If you are interested in running the tests associated with only a single app in the project, you can run the same command as above, and then at the end include the name of the specific app as well.
+
+There are currently 3 Django apps in this project. They are referenced from the command line as follows:
+- ```accounts```
+- ```budget```
+- ```store```
+Therefore as an example if I wanted to check the tests related to just the ```budget``` app, the command I would enter is the following:
+```
+python manage.py test budget
+```
+If at any point you have trouble analyzing tests, feel free to look inside the ```tests.py``` module in each of the above app directories.
 
 ## Technologies Used
 
 ## How to Contribute
+On the branch of your forked repo, please make the following edits to the list on the [CONTRIBUTORS](CONTRIBUTORS) file. You can use the snippet of Markdown code to get you started. Be sure to leave personalized responses in between wherever you see <>.
+```
+**<list item number>. <Your Name> **, *<brief description of how you helped this project>
+- **Description**: <personal description about yourself>
+- **Location**: <where you currently reside>
+- **Fun Fact**: <what do you think most people don't know about you?>
+```
+Note that although highly suggested, you are not required to add a fun fact to your entry in the contributors file. Thanks for helping out!
 
 ## License
 This repository is completely open-source, and carries the MIT license. Please see [LICENSE](LICENSE) for more details.
