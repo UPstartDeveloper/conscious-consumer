@@ -14,7 +14,7 @@ class Profile(models.Model):
     user = models.OneToOneField(dj_conf_settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     mugshot = models.ImageField(upload_to='images/',
-                                default='images/user-icon.png',
+                                default='images/user-icon.jpg',
                                 help_text="User profile image")
 
     def __str__(self):
