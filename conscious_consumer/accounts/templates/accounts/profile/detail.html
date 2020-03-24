@@ -2,6 +2,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- if user has just changed password -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }} alert alert-success"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!-- display account information -->
     <div class="row">
         <div class="col-md-6">
             <!-- Greeting -->
@@ -22,7 +31,7 @@
             </div>
             <div class="row ml-2">
                 <div class="col-md-6">
-                    <a href="#" class="btn btn-info mb-2">Change Password</a>
+                    <a href="{% url 'accounts:password_change' %}" class="btn btn-info mb-2">Change Password</a>
                 </div>
                 <div class="col-md-6">
                     <a href="{% url 'budget:goal_list_personal' user.id %}" class="btn btn-outline-info mr-5 mb-3">Personal Goals</a>

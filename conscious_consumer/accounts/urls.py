@@ -4,6 +4,8 @@ from .views import (
     SignupView,
     ProfileDetail,
     ProfileUpdate,
+    BeginPasswordChange,
+    PasswordChangeComplete,
 )
 
 app_name = 'accounts'
@@ -17,4 +19,9 @@ urlpatterns = [
     path('<int:pk>/change-profile-image/', ProfileUpdate.as_view(),
          name='change_image'),
     path('<int:pk>/', ProfileDetail.as_view(), name='profile_detail'),
+    # password-related views=
+    path('password-change/', BeginPasswordChange.as_view(),
+         name='password_change'),
+    path('password-change/done/', PasswordChangeComplete.as_view(),
+         name='password_change_done'),
 ]

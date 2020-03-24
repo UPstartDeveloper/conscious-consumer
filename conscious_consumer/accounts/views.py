@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from .models import Profile
 from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth import views as auth_views
 
 
 class SignupView(SuccessMessageMixin, CreateView):
@@ -66,3 +67,15 @@ class ProfileUpdate(UserPassesTestMixin, UpdateView):
         '''Ensure that the user is viewing their own profile.'''
         profile = self.get_object()
         return profile.id == self.request.user.profile.id
+
+
+class BeginPasswordChange(SuccessMessageMixin, auth_views.PasswordChangeView):
+    '''A form to enter a new password for the authenticated user.'''
+    template_name = 'accounts/auth/password/change-form.html'
+    success_url = reverse_lazy('accounts:password_change_done')
+    success_message = 'Your password was changed successfully!'
+
+
+class PasswordChangeComplete(auth_views.PasswordChangeDoneView):
+    template_name = 'accounts/profile/detail.html'
+    success_message = 'Your password was changed successfully!'
