@@ -6,7 +6,7 @@ from django.views.generic.edit import (
     DeleteView)
 from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import Profile
 from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -73,7 +73,7 @@ class ProfileDelete(UserPassesTestMixin, DeleteView):
     '''User submits a form to delete their account.'''
     model = Profile
     template_name = 'accounts/profile/delete.html'
-    success_url = reverse_lazy('landing_page')
+    success_url = reverse_lazy('accounts:logout')
     queryset = Profile.objects.all()
 
     def test_func(self):

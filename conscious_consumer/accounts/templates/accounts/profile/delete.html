@@ -1,0 +1,23 @@
+<!-- conscious_consumer/accounts/templates/accounts/profile/delete.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Delete Account</h1>
+<!-- Message for User -->
+<h2>Wait, <i>what?</i> You're Not Giving Up Are You?</h2>
+<p><strong>"Winners don't quit and quitters don't win"</strong> - Vince Lombardi, <i>NFL Coach and 5-time Super Bowl champion</i></p>
+<!-- Deletion form -->
+<h3>This action <strong>cannot</strong> be undone.
+
+
+<h3>Are you sure you would like to continue?</h3>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <input type="submit" class="btn btn-secondary ml-4 mr-2" value="Confirm">
+        <a href="{% url 'accounts:profile_detail' user.profile.id %}" class="btn btn-success">Back to Profile</a>
+    </div>
+</form>
+
+
+{% endblock %}
