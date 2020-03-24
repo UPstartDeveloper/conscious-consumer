@@ -30,3 +30,12 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
+
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+        ]

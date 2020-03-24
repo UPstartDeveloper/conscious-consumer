@@ -8,8 +8,8 @@ from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from .models import Profile
-from .forms import SignUpForm, ProfileForm
-from django.contrib.auth.mixins import UserPassesTestMixin
+from .forms import SignUpForm, ProfileForm, UserChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -69,6 +69,20 @@ class ProfileUpdate(UserPassesTestMixin, UpdateView):
         '''Ensure that the user is changing their own profile.'''
         profile = self.get_object()
         return profile.id == self.request.user.profile.id
+
+
+class UserUpdate(LoginRequiredMixin, UpdateView):
+    '''A user changes their username or email.'''
+    model = User
+    form_class = UserChangeForm
+    template_name = 'accounts/profile/change-user.html'
+    queryset = User.objects.all()
+    login_url = 'accounts:login'
+
+    def get_success_url(self):
+        '''Redirect to the profile page of the updated User object.'''
+        url = self.object.profile.get_absolute_url()
+        return url
 
 
 class UserDelete(DeleteView):
