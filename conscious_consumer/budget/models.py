@@ -10,7 +10,7 @@ class Goal(models.Model):
                              unique=True,
                              help_text="Title of the goal.")
     author = models.ForeignKey(dj_conf_settings.AUTH_USER_MODEL,
-                               on_delete=models.PROTECT,
+                               on_delete=models.CASCADE, null=True,
                                help_text="The user that posted this article.")
     slug = models.CharField(max_length=cc_settings.LABEL_MAX_LENGTH,
                             blank=True, editable=False,

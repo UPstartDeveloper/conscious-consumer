@@ -11,6 +11,8 @@ from .models import Profile
 from .forms import SignUpForm, ProfileForm
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 
 
 class SignupView(SuccessMessageMixin, CreateView):
@@ -69,17 +71,11 @@ class ProfileUpdate(UserPassesTestMixin, UpdateView):
         return profile.id == self.request.user.profile.id
 
 
-class ProfileDelete(UserPassesTestMixin, DeleteView):
-    '''User submits a form to delete their account.'''
-    model = Profile
+class UserDelete(DeleteView):
+    model = User
     template_name = 'accounts/profile/delete.html'
-    success_url = reverse_lazy('accounts:logout')
-    queryset = Profile.objects.all()
-
-    def test_func(self):
-        '''Ensure that the user is deleting their own profile.'''
-        profile = self.get_object()
-        return profile.id == self.request.user.profile.id
+    success_url = reverse_lazy('accounts:login')
+    queryset = User.objects.all()
 
 
 class BeginPasswordChange(SuccessMessageMixin, auth_views.PasswordChangeView):
