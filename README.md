@@ -12,10 +12,11 @@ Fitbit for living a green life. [See it Now.](https://consciousconsumer.herokuap
     - [Run the Project Locally](#run-the-project-locally)
 3. [Running the Tests](#running-the-tests)
 4. [Technologies Used](#technologies-used)
-5. [How to Contribute](#how-to-contribute)
-6. [License](#license)
-7. [Release Schedule](#release-schedule)
-8. [Acknowledgements](#acknowledgements)
+5. [Navigating the Project](#navigating-the-project)
+6. [How to Contribute](#how-to-contribute)
+7. [License](#license)
+8. [Release Schedule](#release-schedule)
+9. [Acknowledgements](#acknowledgements)
 
 ## The Why
 [Conscious Consumer](https://consciousconsumer.herokuapp.com) is a website that everyday people use to track their carbon footprint. Let's face it: have you stopped to wonder what the cost is to the environment, every time you emit carbon into the atmosphere?
@@ -55,19 +56,6 @@ git add .
 git commit -m "[YOUR COMMIT MESSAGE HERE]"
 git push origin branch-name
 ```
-
-### How to Contribute
-When you are ready to push the branch of your forked repo, please make the following edits to the list on the [CONTRIBUTORS.md](CONTRIBUTORS.md) file. You can use the snippet of Markdown code to get you started. Be sure to leave personalized responses in between wherever you see <>.
-```
-**<list item number>. <Your Name> **, *<brief description of how you helped this project>
-- **Description**: <personal description about yourself>
-- **Location**: <where you currently reside>
-- **Fun Fact**: <what do you think most people don't know about you?>
-- **Find Me**: <[YOUR_NAME](Link to your GitHub Account, social media, or other personal link)>
-```
-Once you have pushed your branch, go to your fork on GitHub and open a pull request. The team will then evaluate it to see if it can be merged. If not, we will give you feedback explaining why.
-
-Note that although highly suggested, you are not required to add a fun fact or a link to your entry in the contributors file. Thanks for helping out!
 
 ### Installing Requirements
 
@@ -125,7 +113,43 @@ If at any point you have trouble analyzing tests, feel free to look inside the `
 - PostgreSQL - production database schema
 - Django REST Framework - framework building the API (found in the [conscious_consumer.api package](conscious_consumer/api/)).
 - AWS S3 - cloud storage for image uploads
+- Chart.js - data visualizations using Javascript and JSON
 - Heroku - deployment on a production server
+
+## Navigating the Repository
+This repository follows the [Django framework](https://docs.djangoproject.com) for making full-stack web applications.
+All the code is found in the outer ```conscious_consumer``` directory, because that is the folder for the overall Django project.
+
+There are a few important things to note about the inner directories of this folder:
+1. **Apps in Django**: By convention, these subdirectories of ```conscious_consumer``` are also referred to as "apps" in the Django framework. There are several apps in this project, so here is a brief overview of what each of them are, and what their use is (so you know why you may ever want to look inside them):
+- ```accounts```: everything related to authentication and user profiles.
+- ```api```: creates a RESTful endpoint, to retrieve information about users' ```Goal``` instances. Used in creating data visualizations on the front-end.
+- ```budget```: everything related to creating carbon budgets for the user.
+- ```static and staticfiles```: all custom CSS, images, and Javascript files used in the project go here. If you add any new static files, you need only to upload them to the ```staticfiles``` directory. In production AWS S3 will be used to deploy static files.
+- ```store```: everything related to users finding and connecting with green products and services that help them become more environmentally conscious.
+- ```templates```: all HTML files applied to the project as a whole, and not specific to any of the above packages (i.e. the landing page is saved here as```index.html```).
+- ```conscious_consumer```: in what may seem strange to Django-beginners, there is also an innner-directory named ```conscious_consumer```! Remember that the project governs over the apps in Django; so this package stores all Python modules pertaining to the project as a whole, not any one specific app. For example, you will find the all-important ```settings.py``` script in this directory, where you will be able to configure important project settings such as the database used, the URL configuration, static file storage, and more.
+2. **Imports**: all of the subdirectories of the outer ```conscious_consumer``` directory are the equivalent of Python packages. In turn, this means an individual Python script in one of these subdirectories (i.e. ```conscious_consumer/budget/models.py```) is the equivalent of a Python module. This means you will need to use the dot operator(.) when importing objects between these scripts.
+3. **MVC Architecture**: so you think you're ready to work with apps in Django? Not so fast - read this first if you're new to Django, so you know what each of the main files in the app directories (outlined above) actually mean. Remember you can also always refer back to the [Django documentation](https://docs.djangoproject.com) for more clarification. If you first need to learn what MVC Architecture is conceptually, please look at [this superb explanation on Real Python](https://realpython.com/the-model-view-controller-mvc-paradigm-summarized-with-legos/).
+
+- *Models in Django*: refer to the ```models.py``` module, which outlines the database schema for the feature related to that specific package, and is implemented using the principles of Object-Oriented Programming.
+- *Views in Django*: for this, look in the ```urls.py``` module. It contains the URL patterns for the views a user may request from the site.
+- *Controllers in Django*: refer to the ```views.py``` module, which contains the code that programs the server to respond to the requests made by the client.
+
+Also, in each of the app subdirectories you will find a ```templates/``` subdirectory, which you may refer to so you can see the HTML used to render each of the views specific to a particular app. Template inheritance is used to reduce the number of HTML files needed - the base template is found in ```conscious_consumer/templates/base.html```.
+
+## How to Contribute
+When you are ready to push the branch of your forked repo, please make the following edits to the list on the [CONTRIBUTORS.md](CONTRIBUTORS.md) file. You can use the snippet of Markdown code to get you started. Be sure to leave personalized responses in between wherever you see <>.
+```
+**<list item number>. <Your Name> **, *<brief description of how you helped this project>
+- **Description**: <personal description about yourself>
+- **Location**: <where you currently reside>
+- **Fun Fact**: <what do you think most people don't know about you?>
+- **Find Me**: <[YOUR_NAME](Link to your GitHub Account, social media, or other personal link)>
+```
+Once you have pushed your branch, go to your fork on GitHub and open a pull request. The team will then evaluate it to see if it can be merged. If not, we will give you feedback explaining why.
+
+Note that although highly suggested, you are not required to add a fun fact or a link to your entry in the contributors file. Thanks for helping out!
 
 ## License
 This repository is completely open-source, and carries the MIT license. Please see [LICENSE](LICENSE) for more details.
