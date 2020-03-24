@@ -64,7 +64,20 @@ class ProfileUpdate(UserPassesTestMixin, UpdateView):
     queryset = Profile.objects.all()
 
     def test_func(self):
-        '''Ensure that the user is viewing their own profile.'''
+        '''Ensure that the user is changing their own profile.'''
+        profile = self.get_object()
+        return profile.id == self.request.user.profile.id
+
+
+class ProfileDelete(UserPassesTestMixin, DeleteView):
+    '''User submits a form to delete their account.'''
+    model = Profile
+    template_name = 'accounts/profile/delete.html'
+    success_url = reverse_lazy('landing_page')
+    queryset = Profile.objects.all()
+
+    def test_func(self):
+        '''Ensure that the user is deleting their own profile.'''
         profile = self.get_object()
         return profile.id == self.request.user.profile.id
 

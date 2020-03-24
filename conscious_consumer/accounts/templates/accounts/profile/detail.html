@@ -39,7 +39,7 @@
             </div>
             <div class="row ml-2">
                 <div class="col-md-6">
-                    <a href="#" class="btn btn-danger mb-2">Delete Account</a>
+                    <a href="{% url 'accounts:profile_delete' user.profile.id %}" class="btn btn-danger mb-2">Delete Account</a>
                 </div>
                 <div class="col-md-6">
                     <a href="{% url 'accounts:logout' %}" class="btn btn-outline-danger">Log Out</a>
