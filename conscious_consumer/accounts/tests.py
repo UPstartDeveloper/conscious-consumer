@@ -6,6 +6,7 @@ from .models import Profile
 from .views import (
     SignupView,
     ProfileDetail,
+    ProfileUpdate
 )
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.storage.fallback import FallbackStorage
@@ -105,3 +106,17 @@ class ProfileDetailTests(TestCase):
         response = ProfileDetail.as_view()(request, test_profile.id)
         # view renders ok
         self.assertEqual(response.status_code, 200)
+
+
+class ProfileUpdateTests(TestCase):
+    def setUp(self):
+        '''Initializes variables reused for every test.'''
+        pass
+
+    def test_authenticated_user_gets_update_form(self):
+        '''A logged in User can access a form to change their profile image.'''
+        pass
+
+    def test_user_changes_profile_image(self):
+        '''A user submits a new image file to use for their profile.'''
+        pass
