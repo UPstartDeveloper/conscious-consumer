@@ -6,7 +6,7 @@ from django.views.generic.edit import (
     DeleteView)
 from django.views.generic.detail import DetailView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy, resolve
 from .models import Profile
 from .forms import SignUpForm, ProfileForm, UserChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin

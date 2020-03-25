@@ -8,7 +8,7 @@ from .views import (
     ProfileDetail,
     ProfileUpdate
 )
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy, resolve
 from django.contrib.messages.storage.fallback import FallbackStorage
 
 
@@ -101,9 +101,9 @@ class ProfileDetailTests(TestCase):
         test_profile = Profile.objects.get(user=self.user)
         self.assertTrue(test_profile, not None)
         # user gets the view
-        request = self.factory.get('/accounts/1')
+        request = self.factory.get(reverse(self.url, args=[test_profile.id]))
         request.user = self.user
-        response = ProfileDetail.as_view()(request, test_profile.id)
+        response = ProfileDetail.as_view()(request, pk=test_profile.id)
         # view renders ok
         self.assertEqual(response.status_code, 200)
 
@@ -122,7 +122,14 @@ class ProfileUpdateTests(TestCase):
 
     def test_authenticated_user_gets_update_form(self):
         '''A logged in User can access a form to change their profile image.'''
-        pass
+        # profile for user already exists
+        test_profile = Profile.objects.get(user=self.user)
+        self.assertTrue(test_profile, not None)
+        # user is able to GET the view
+        request = self.factory.get(reverse(self.url, args=[test_profile.id]))
+        request.user = self.user
+        response = ProfileUpdate.as_view()(request, pk=test_profile.id)
+        self.assertEqual(response.status_code, 200)
 
     def test_user_changes_profile_image(self):
         '''A user submits a new image file to use for their profile.'''
