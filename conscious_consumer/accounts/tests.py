@@ -17,15 +17,10 @@ class SignupViewTests(TestCase):
         '''Site visitor information relevant to each test.'''
         self.factory = RequestFactory()
         self.visitor = AnonymousUser()
-        self.user_info = {
-            'username': 'zainraza',
-            'email': 'zainr7989@gmail.com',
-            'pass_1': 'who_is_typing_this_9'
-        }
         self.user = (
-            User.objects.create_user(self.user_info.get('username'),
-                                     self.user_info.get('email'),
-                                     self.user_info.get('pass_1'))
+            User.objects.create_user('zainraza',
+                                     'zainr7989@gmail.com',
+                                     'who_is_typing_this_9')
         )
         # self.url = reverse('accounts:signup')
         self.url = 'accounts:signup'
@@ -47,25 +42,20 @@ class SignupViewTests(TestCase):
         An authenticated user is no longer able to fill out the signup form.
         '''
         # user is logged in already
+        user_in_test = User.objects.get(username=self.user.username)
+        self.assertTrue(user_in_test, not None)
         self.assertEqual(self.user.is_authenticated, True)
         # user visits the signup page
-        request = self.factory.get(reverse_lazy(self.url))
+        request = self.factory.get('/accounts/signup/')
         request.user = self.user
-        # supply the message to the request
-        setattr(request, 'session', 'session')
-        messages = FallbackStorage(request)
-        setattr(request, '_messages', messages)
         # get the response
         response = SignupView.as_view()(request)
         # page is able to render
         self.assertEqual(response.status_code, 200)
-        """
         # Commented for now, will debug later to improve the test
         # user sees a message different from a site visitor
-        self.assertContains(response,
-                            "Looks like you already have an account. " +
-                            "We appreciate you for joining us!")
-        """
+        # self.assertContains(response.content,
+        #                      "Looks like you already have an account")
 
     def test_form_valid_submission(self):
         """
