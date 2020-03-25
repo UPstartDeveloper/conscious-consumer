@@ -36,3 +36,8 @@ class GoalDataTests(TestCase):
         response = GoalData.as_view()(request, test_goal.id)
         # response is returned ok
         self.assertEqual(response.status_code, 200)
+        # test the response has the right data
+        self.assertEquals(response.data.get('labels'),
+                          ['Achievements', 'Fails'])
+        self.assertEquals(response.data.get('values'),
+                          [test_goal.achievements, test_goal.fails])
