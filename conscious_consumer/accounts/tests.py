@@ -125,6 +125,8 @@ class ProfileUpdateTests(TestCase):
         # profile for user already exists
         test_profile = Profile.objects.get(user=self.user)
         self.assertTrue(test_profile, not None)
+        # the mugshot image is currently set to the default
+        self.assertEqual(test_profile.mugshot.name, 'images/user-icon.jpg')
         # user is able to GET the view
         request = self.factory.get(reverse(self.url, args=[test_profile.id]))
         request.user = self.user
