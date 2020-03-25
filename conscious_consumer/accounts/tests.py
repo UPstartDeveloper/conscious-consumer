@@ -111,7 +111,14 @@ class ProfileDetailTests(TestCase):
 class ProfileUpdateTests(TestCase):
     def setUp(self):
         '''Initializes variables reused for every test.'''
-        pass
+        self.factory = RequestFactory()
+        self.user = (
+            User.objects.create_user('zainraza',
+                                     'zainr7989@gmail.com',
+                                     'who_is_typing_this_9')
+        )
+        self.url = 'accounts:change_image'
+        self.profile = Profile.objects.create(user=self.user)
 
     def test_authenticated_user_gets_update_form(self):
         '''A logged in User can access a form to change their profile image.'''
