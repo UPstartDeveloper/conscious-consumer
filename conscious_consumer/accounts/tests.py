@@ -22,7 +22,6 @@ class SignupViewTests(TestCase):
                                      'zainr7989@gmail.com',
                                      'who_is_typing_this_9')
         )
-        # self.url = reverse('accounts:signup')
         self.url = 'accounts:signup'
 
     def test_visitor_gets_signup_form(self):
@@ -86,4 +85,16 @@ class ProfileDetailTests(TestCase):
     '''User is able to see the details specific to their own account.'''
     def setUp(self):
         '''User information relevant to each test.'''
-        pass
+        self.user = (
+            User.objects.create_user('zainraza',
+                                     'zainr7989@gmail.com',
+                                     'who_is_typing_this_9')
+        )
+        self.url = 'accounts:profile_detail'
+
+    def test_gets_own_profile_page(self):
+        '''User goes to their own profile page and sees their information.'''
+        # user is in the db
+        test_user = User.objects.get(username=self.user.username)
+        self.assertTrue(test_user, not None)
+        self.assertTrue(test_user.is_authenticated, True)
