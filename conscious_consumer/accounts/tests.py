@@ -85,16 +85,23 @@ class ProfileDetailTests(TestCase):
     '''User is able to see the details specific to their own account.'''
     def setUp(self):
         '''User information relevant to each test.'''
+        self.factory = RequestFactory()
         self.user = (
             User.objects.create_user('zainraza',
                                      'zainr7989@gmail.com',
                                      'who_is_typing_this_9')
         )
         self.url = 'accounts:profile_detail'
+        self.profile = Profile.objects.create(user=self.user)
 
     def test_gets_own_profile_page(self):
         '''User goes to their own profile page and sees their information.'''
-        # user is in the db
-        test_user = User.objects.get(username=self.user.username)
-        self.assertTrue(test_user, not None)
-        self.assertTrue(test_user.is_authenticated, True)
+        # profile is in the db
+        test_profile = Profile.objects.get(user=self.user)
+        self.assertTrue(test_profile, not None)
+        # user gets the view
+        request = self.factory.get('/accounts/1')
+        request.user = self.user
+        response = ProfileDetail.as_view()(request, test_profile.id)
+        # view renders ok
+        self.assertEqual(response.status_code, 200)
