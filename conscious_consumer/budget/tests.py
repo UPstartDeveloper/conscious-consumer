@@ -83,8 +83,8 @@ class PersonalGoalListTests(TestCase):
         self.client = Client()
         self.factory = RequestFactory()
 
-    def test_user_view_personal_detail_own(self):
-        '''A user is able to see personal details of Goals they authored.'''
+    def test_user_view_personal_list_own(self):
+        '''A user is able to see s list of Goals they authored.'''
         # there are two different users in the db
         test_user = User.objects.get(id=self.user.id)
         self.assertTrue(test_user, not None)
@@ -145,6 +145,18 @@ class PersonalGoalDetailTests(TestCase):
         self.url = 'budget:goal_detail_personal'
         self.client = Client()
         self.factory = RequestFactory()
+
+    def test_user_get_personal_detail_own_goal(self):
+        """
+        User sees details personally available for the goals they authored.
+        """
+
+    def test_user_get_personal_detail_other_goal(self):
+        """
+        User tries to see personal details of other user's goal, and is
+        redirected to the publicly available detail view.
+        """
+        pass
 
 
 class PublicGoalDetailTests(TestCase):
