@@ -82,6 +82,17 @@ class PersonalGoalListTests(TestCase):
         self.url = 'budget:goal_list_public'
         self.client = Client()
 
+    def test_user_view_personal_detail_own(self):
+        '''A user is able to see personal details of Goals they authored.'''
+        pass
+
+    def test_user_view_personal_detail_other(self):
+        """
+        A user viewing the personal details of another user's goal is
+        redirected to the public details page.
+        """
+        pass
+
 
 class PersonalGoalDetailTests(TestCase):
     pass
