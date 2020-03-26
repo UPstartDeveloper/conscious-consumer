@@ -108,13 +108,6 @@ class PersonalGoalListTests(TestCase):
         # user does not see goals by other users
         self.assertNotIn(b'{self.other_goal.title}', response.content)
 
-    def test_user_view_personal_detail_other(self):
-        """
-        A user viewing the personal details of another user's goal is
-        redirected to the public details page.
-        """
-        pass
-
 
 class PersonalGoalDetailTests(TestCase):
     pass
