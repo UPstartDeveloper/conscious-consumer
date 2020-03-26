@@ -158,7 +158,32 @@ class PersonalGoalDetailTests(TestCase):
         """
         User sees details personally available for the goals they authored.
         """
-        pass
+        # there are two different users in the db
+        test_user = User.objects.get(id=self.user.id)
+        self.assertTrue(test_user, not None)
+        test_other_user = User.objects.get(id=self.other_user.id)
+        self.assertTrue(test_other_user, not None)
+        # there are two different goals
+        test_goal = Goal.objects.get(id=self.goal.id)
+        self.assertTrue(test_goal, not None)
+        test_other_goal = Goal.objects.get(id=self.other_goal.id)
+        self.assertTrue(test_other_goal, not None)
+        # the goals have different authors
+        self.assertEqual(self.goal.author, self.user)
+        self.assertEqual(self.other_goal.author, self.other_user)
+        # user accesses the personal goal detail of their own goal
+        request = self.factory.get(
+                reverse(self.url, args=[self.user.id, self.goal.slug]))
+        # response is returned ok
+        '''response = PersonalGoalDetail.as_view()(request,
+,                                                pk=self.user.id,
+                                                slug=self.goal.slug)'''
+        response = PersonalGoalDetail.as_view()(request,
+                                                pk=self.user.id,
+                                                slug=self.goal.slug)
+        self.assertEqual(response.status_code, 200)
+        # user sees their own goal on the view, with private data available
+        self.assertContains(response, self.goal.title)
 
     def test_user_get_personal_detail_other_goal(self):
         """
