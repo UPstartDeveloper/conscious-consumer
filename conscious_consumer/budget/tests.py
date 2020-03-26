@@ -12,6 +12,7 @@ from .views import (
 from django.contrib.auth.models import User
 from .models import Goal
 from django.urls import reverse
+from .forms import GoalForm
 
 
 class AllGoalListTests(TestCase):
@@ -22,7 +23,8 @@ class AllGoalListTests(TestCase):
                                      'zainr7989@gmail.com',
                                      'who_is_typing_this_9')
         )
-        self.goal = Goal.objects.create(
+
+        self.goal = (Goal(
             title='Daily Commute',
             author=self.user,
             description='Make driving greener',
@@ -30,7 +32,9 @@ class AllGoalListTests(TestCase):
             fails=6,
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
-        )
+        ))
+        self.goal.save()
+
         self.url = 'budget:goal_list_public'
         self.client = Client()
 
@@ -61,7 +65,7 @@ class PersonalGoalListTests(TestCase):
                                      'who_is_typing_this_7')
         )
         # instantiate separate goals
-        self.goal = Goal.objects.create(
+        self.goal = Goal(
             title='Daily Commute',
             author=self.user,
             description='Make driving greener',
@@ -70,7 +74,8 @@ class PersonalGoalListTests(TestCase):
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
         )
-        self.other_goal = Goal.objects.create(
+        self.goal.save()
+        self.other_goal = Goal(
             title='Weekly Commute',
             author=self.other_user,
             description='Make driving greener',
@@ -79,6 +84,7 @@ class PersonalGoalListTests(TestCase):
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
         )
+        self.other_goal.save()
         self.url = 'budget:goal_list_personal'
         self.client = Client()
         self.factory = RequestFactory()
@@ -124,7 +130,7 @@ class PersonalGoalDetailTests(TestCase):
                                      'who_is_typing_this_7')
         )
         # instantiate separate goals
-        self.goal = Goal.objects.create(
+        self.goal = Goal(
             title='Daily Commute',
             author=self.user,
             description='Make driving greener',
@@ -133,7 +139,8 @@ class PersonalGoalDetailTests(TestCase):
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
         )
-        self.other_goal = Goal.objects.create(
+        self.goal.save()
+        self.other_goal = Goal(
             title='Weekly Commute',
             author=self.other_user,
             description='Make driving greener',
@@ -142,6 +149,7 @@ class PersonalGoalDetailTests(TestCase):
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
         )
+        self.other_goal.save()
         self.url = 'budget:goal_detail_personal'
         self.client = Client()
         self.factory = RequestFactory()
@@ -150,6 +158,7 @@ class PersonalGoalDetailTests(TestCase):
         """
         User sees details personally available for the goals they authored.
         """
+        pass
 
     def test_user_get_personal_detail_other_goal(self):
         """
