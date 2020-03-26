@@ -71,20 +71,42 @@ class PersonalGoalListTests(TestCase):
             monthly_target=Goal.MIN_VALUE
         )
         self.other_goal = Goal.objects.create(
-            title='Daily Commute',
-            author=self.user,
+            title='Weekly Commute',
+            author=self.other_user,
             description='Make driving greener',
             achievements=12,
             fails=6,
             category=Goal.TRAVEL_CAT,
             monthly_target=Goal.MIN_VALUE
         )
-        self.url = 'budget:goal_list_public'
+        self.url = 'budget:goal_list_personal'
         self.client = Client()
+        self.factory = RequestFactory()
 
     def test_user_view_personal_detail_own(self):
         '''A user is able to see personal details of Goals they authored.'''
-        pass
+        # there are two different users in the db
+        test_user = User.objects.get(id=self.user.id)
+        self.assertTrue(test_user, not None)
+        test_other_user = User.objects.get(id=self.other_user.id)
+        self.assertTrue(test_other_user, not None)
+        # there are two different goals
+        test_goal = Goal.objects.get(id=self.goal.id)
+        self.assertTrue(test_goal, not None)
+        test_other_goal = Goal.objects.get(id=self.other_goal.id)
+        self.assertTrue(test_other_goal, not None)
+        # the goals have different authors
+        self.assertEqual(self.goal.author, self.user)
+        self.assertEqual(self.other_goal.author, self.other_user)
+        # user accesses the personal goals list
+        request = self.factory.get(reverse(self.url, args=[self.goal.id]))
+        # response is returned ok
+        response = PersonalGoalList.as_view()(request, pk=self.goal.id)
+        self.assertEqual(response.status_code, 200)
+        # user sees their own goal on the view
+        self.assertContains(response, self.goal.title)
+        # user does not see goals by other users
+        self.assertNotIn(b'{self.other_goal.title}', response.content)
 
     def test_user_view_personal_detail_other(self):
         """
