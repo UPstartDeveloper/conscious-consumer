@@ -47,7 +47,40 @@ class AllGoalListTests(TestCase):
 
 
 class PersonalGoalListTests(TestCase):
-    pass
+    def setUp(self):
+        '''Instaniate relevant model instances reused in tests.'''
+        # instaniate separate users
+        self.user = (
+            User.objects.create_user('zainraza',
+                                     'zainr7989@gmail.com',
+                                     'who_is_typing_this_9')
+        )
+        self.other_user = (
+            User.objects.create_user('zurich',
+                                     'zurich@gmail.com',
+                                     'who_is_typing_this_7')
+        )
+        # instantiate separate goals
+        self.goal = Goal.objects.create(
+            title='Daily Commute',
+            author=self.user,
+            description='Make driving greener',
+            achievements=12,
+            fails=6,
+            category=Goal.TRAVEL_CAT,
+            monthly_target=Goal.MIN_VALUE
+        )
+        self.other_goal = Goal.objects.create(
+            title='Daily Commute',
+            author=self.user,
+            description='Make driving greener',
+            achievements=12,
+            fails=6,
+            category=Goal.TRAVEL_CAT,
+            monthly_target=Goal.MIN_VALUE
+        )
+        self.url = 'budget:goal_list_public'
+        self.client = Client()
 
 
 class PersonalGoalDetailTests(TestCase):
