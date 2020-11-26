@@ -8,15 +8,15 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
-    build: ./conscious_consumer
-    command: python manage.py runserver 0.0.0.0:8000
+    build: 
+      context: ./conscious_consumer
+      dockerfile: ./conscious_consumer/Dockerfile
+    command: python ./conscious_consumer/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=conscious_consumer.settings.caprover
-    env_file:
-      - ./conscious_consumer/.env.sample
+      - DJANGO_SETTINGS_MODULE=conscious_consumer.caprover_settings
     depends_on:
       - db 
