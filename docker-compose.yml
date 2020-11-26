@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: ./conscious_consumer
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=conscious_consumer.settings.caprover
+    env_file:
+      - ./conscious_consumer/.env.sample
+    depends_on:
+      - db 
