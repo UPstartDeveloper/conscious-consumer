@@ -12,6 +12,7 @@ from .views import (
 app_name = 'budget'
 urlpatterns = [
     # Goal-related CRUD URLs - id of user is passed to query string on personal
+    path('goals/public/', AllGoalList.as_view(), name="goal_list_public"),
     path('goals/<int:pk>/<slug:slug>/', PersonalGoalDetail.as_view(),
          name='goal_detail_personal'),
     path('<int:pk>/', PersonalGoalList.as_view(),
@@ -23,5 +24,4 @@ urlpatterns = [
          name="goal_update"),
     path('goal/delete/<slug:slug>/', GoalDelete.as_view(),
          name="goal_delete"),
-    path('goals/public/', AllGoalList.as_view(), name="goal_list_public"),
 ]
