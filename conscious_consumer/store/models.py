@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings as dj_conf_settings
-import conscious_consumer.settings as cc_settings
+import conscious_consumer.settings.settings as cc_settings
 from django.urls import reverse
 from django.utils.text import slugify
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings as dj_conf_settings
-import conscious_consumer.settings as cc_settings
+import conscious_consumer.settings.settings as cc_settings
 from store.models import Product
 
 
@@ -15,7 +15,6 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     mugshot = models.ImageField(upload_to='images/',
                                 default='images/user-icon.jpg',
-                                null=True, blank=True,
                                 help_text="User profile image")
 
     def __str__(self):

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # tell Django which settings to use 
-export DJANGO_SETTINGS_MODULE=conscious_consumer.caprover_settings
+export DJANGO_SETTINGS_MODULE=conscious_consumer.settings.caprover_settings
 # python manage.py commands
 python manage.py migrate --noinput
 
