@@ -35,7 +35,6 @@ Please take a look at the following for more context around the idea behind the 
 - Must have a GitHub account
 - Must have Python 3.7.* installed
 - Must know how to work in a [Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/)
-(Docker should work as well, I've just never used it before)
 
 ### Forking this Repository
 If you would like to improve this project in some way (much appreciated!), then please follow these steps to fork the repository:
