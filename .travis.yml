@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.7" 
+  - "3.8"
+  - "3.9"
+# adding PostgreSQL
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database conscious_consumer;' -U postgres
+# command to install dependencies
+install:
+  - cd conscious_consumer/
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - python manage.py collectstatic --noinput
+  - python manage.py migrate
+  - python manage.py test
