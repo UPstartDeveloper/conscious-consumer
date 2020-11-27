@@ -80,31 +80,33 @@ Thank you in advance for contributing to this project!
 
 **Option 1**: Using `virtualenv`
 
-    From the same ```conscious_consumer/``` directory, you can run this project locally using the following command:
-    ```
+From the same ```conscious_consumer/``` directory, you can run this project locally using the following command:
+
+```
     python manage.py runserver
-    ```
-    There is much more to the Django framework for Python - if you are ensure of how to do something for the backend of this project, be sure to refer to the stellar [Django documentation](https://docs.djangoproject.com).
+```
+
+There is much more to the Django framework for Python - if you are ensure of how to do something for the backend of this project, be sure to refer to the stellar [Django documentation](https://docs.djangoproject.com).
 
 **Option 2**: Using Docker
 
-    #### Prerequisites:
-    
-    Make sure you have the latest version of [Docker](https://www.docker.com/get-started) installed. If you are not on macOS or experience any trouble installing Docker Compose, check out the [Docker documentation](https://docs.docker.com/compose/install/).
+#### Prerequisites:
 
-    #### Instructions
+Make sure you have the latest version of [Docker](https://www.docker.com/get-started) installed. If you are not on macOS or experience any trouble installing Docker Compose, check out the [Docker documentation](https://docs.docker.com/compose/install/).
 
-    1. Once you have done so and have also cloned the repository locally, you can run the project using `docker-compose` in the root directory:
+#### Instructions
 
-            ```
-            docker-compose up --build
-            ```
+1. Once you have done so and have also cloned the repository locally, you can run the project using `docker-compose` in the root directory:
 
-    2. Then you can view the project at [http://localhost:8000](http://localhost:8000).
+    ```
+        docker-compose up --build
+    ```
 
-    You can also open up Docker Desktop, and view the health of the `conscious_consumer` container on a panel that will look something like below:
+2. Then you can view the project at [http://localhost:8000](http://localhost:8000).
 
-    ![Screenshot from Docker Desktop](https://i.postimg.cc/C1x2fwJM/Screen-Shot-2020-11-27-at-11-30-06-AM.png)
+You can also open up Docker Desktop, and view the health of the `conscious_consumer` container on a panel that will look something like below:
+
+![Screenshot from Docker Desktop](https://i.postimg.cc/C1x2fwJM/Screen-Shot-2020-11-27-at-11-30-06-AM.png)
 
 ## Running the Tests
 Be sure that your virtual environment is activated.
