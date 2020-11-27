@@ -6,6 +6,6 @@ class GoalSerializer(ModelSerializer):
     class Meta:
         model = Goal
         fields = [
-            'achievements',
-            'fails',
+            "achievements",
+            "fails",
         ]

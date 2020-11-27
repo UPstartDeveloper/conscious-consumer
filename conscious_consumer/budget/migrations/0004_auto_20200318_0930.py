@@ -6,13 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('budget', '0003_auto_20200318_0928'),
+        ("budget", "0003_auto_20200318_0928"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='goal',
-            name='monthly_target',
-            field=models.FloatField(choices=[(0.03, '0.03 tons/mo. - Lower limit'), (0.06, '0.06 tons/mo. - Almost-there limit'), (0.09, '0.09 tons/mo. - Reasonable limit'), (0.12, '0.12 tons/mo. - Making-progress limit'), (0.17, '0.17 tons/mo. - Upper limit')], default=0.17, help_text='Tons carbon will you limit yourself to each month.'),
+            model_name="goal",
+            name="monthly_target",
+            field=models.FloatField(
+                choices=[
+                    (0.03, "0.03 tons/mo. - Lower limit"),
+                    (0.06, "0.06 tons/mo. - Almost-there limit"),
+                    (0.09, "0.09 tons/mo. - Reasonable limit"),
+                    (0.12, "0.12 tons/mo. - Making-progress limit"),
+                    (0.17, "0.17 tons/mo. - Upper limit"),
+                ],
+                default=0.17,
+                help_text="Tons carbon will you limit yourself to each month.",
+            ),
         ),
     ]

@@ -11,33 +11,103 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('store', '0001_initial'),
+        ("store", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mugshot', models.ImageField(default='images/user-icon.png', help_text='User profile image', upload_to='images/')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "mugshot",
+                    models.ImageField(
+                        default="images/user-icon.png",
+                        help_text="User profile image",
+                        upload_to="images/",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Notification',
+            name="Notification",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('label', models.CharField(help_text='Message to user about someone reviewing their product for sale, delivery of a bought product, or a comment on their goal by another user.', max_length=60)),
-                ('profile', models.ForeignKey(help_text='Related user profile.', on_delete=django.db.models.deletion.CASCADE, to='accounts.Profile')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "label",
+                    models.CharField(
+                        help_text="Message to user about someone reviewing their product for sale, delivery of a bought product, or a comment on their goal by another user.",
+                        max_length=60,
+                    ),
+                ),
+                (
+                    "profile",
+                    models.ForeignKey(
+                        help_text="Related user profile.",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="accounts.Profile",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Interest',
+            name="Interest",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('label', models.CharField(help_text='Category of products that would make it easier for this user to keep to their buget goals.', max_length=60)),
-                ('product', models.ForeignKey(help_text='Related products to be recommended.', on_delete=django.db.models.deletion.PROTECT, to='store.Product')),
-                ('profile', models.ForeignKey(help_text='Related user profile.', on_delete=django.db.models.deletion.CASCADE, to='accounts.Profile')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "label",
+                    models.CharField(
+                        help_text="Category of products that would make it easier for this user to keep to their buget goals.",
+                        max_length=60,
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        help_text="Related products to be recommended.",
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="store.Product",
+                    ),
+                ),
+                (
+                    "profile",
+                    models.ForeignKey(
+                        help_text="Related user profile.",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="accounts.Profile",
+                    ),
+                ),
             ],
         ),
     ]

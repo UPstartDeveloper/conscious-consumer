@@ -6,11 +6,11 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = [
-            'title',
-            'description',
-            'photo',
-            'price',
-            'web_link',
+            "title",
+            "description",
+            "photo",
+            "price",
+            "web_link",
         ]
 
 
@@ -18,6 +18,6 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         exclude = [
-            'author',
-            'modified',
+            "author",
+            "modified",
         ]

@@ -18,15 +18,15 @@ from django.urls import path, include
 from .views import landing
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Project-wide urls
-    path('', landing, name="landing_page"),
+    path("", landing, name="landing_page"),
     # Auth-related urls
-    path('accounts/', include('accounts.urls')),
+    path("accounts/", include("accounts.urls")),
     # Carbon-budgeting urls
-    path('budget/', include('budget.urls')),
+    path("budget/", include("budget.urls")),
     # E-commerce-related urls
-    path('store/', include('store.urls')),
+    path("store/", include("store.urls")),
     # RESTful API endpoints
-    path('api/', include('api.urls')),
+    path("api/", include("api.urls")),
 ]

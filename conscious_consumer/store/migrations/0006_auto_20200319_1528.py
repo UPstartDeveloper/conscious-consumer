@@ -9,13 +9,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('store', '0005_auto_20200319_1524'),
+        ("store", "0005_auto_20200319_1524"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='seller',
-            field=models.ForeignKey(help_text='User who posted this product.', on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL),
+            model_name="product",
+            name="seller",
+            field=models.ForeignKey(
+                help_text="User who posted this product.",
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

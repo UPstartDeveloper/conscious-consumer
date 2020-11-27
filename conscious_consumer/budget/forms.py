@@ -6,10 +6,10 @@ class GoalForm(forms.ModelForm):
     class Meta:
         model = Goal
         exclude = [
-            'author',
-            'slug',
-            'created',
-            'modified',
+            "author",
+            "slug",
+            "created",
+            "modified",
         ]
 
 
@@ -17,6 +17,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = [
-            'headline',
-            'description',
+            "headline",
+            "description",
         ]
