@@ -1,21 +1,24 @@
+import os
+
 from .settings import *
 
 # reset the variables for the CapRover environment
 DEBUG = True
 
-SECRET_KEY='odeoe_4^kfoef66D%/?$cgr3)qghsfogqy#6b'
-
 DATABASES = {
     'default': {
-        'NAME': 'postgres',
+        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'USER': os.getenv('POSTGRES_USER','postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD','postgres'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),  # depends on what your PostgreSQL app is called
         'PORT': 5432
     }
 }
 
+ALLOWED_HOSTS = [
+    'conscious-consumer-app.dev.zainraza.me'
+]
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = ''
