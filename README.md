@@ -77,11 +77,36 @@ python -m pip freeze > requirements.txt
 ```
 Thank you in advance for contributing to this project!
 ### Run the Project Locally
-    From the same ```conscious_consumer/``` directory, you can run this project locally using the following command:
-    ```
+
+**Option 1**: Using `virtualenv`
+
+From the same ```conscious_consumer/``` directory, you can run this project locally using the following command:
+
+```
     python manage.py runserver
+```
+
+There is much more to the Django framework for Python - if you are ensure of how to do something for the backend of this project, be sure to refer to the stellar [Django documentation](https://docs.djangoproject.com).
+
+**Option 2**: Using Docker
+
+#### Prerequisites:
+
+Make sure you have the latest version of [Docker](https://www.docker.com/get-started) installed. If you are not on macOS or experience any trouble installing Docker Compose, check out the [Docker documentation](https://docs.docker.com/compose/install/).
+
+#### Instructions
+
+1. Once you have done so and have also cloned the repository locally, you can run the project using `docker-compose` in the root directory:
+
     ```
-    There is much more to the Django framework for Python - if you are ensure of how to do something for the backend of this project, be sure to refer to the stellar [Django documentation](https://docs.djangoproject.com).
+        docker-compose up --build
+    ```
+
+2. Then you can view the project at [http://localhost:8000](http://localhost:8000).
+
+You can also open up Docker Desktop, and view the health of the `conscious_consumer` container on a panel that will look something like below:
+
+![Screenshot from Docker Desktop](https://i.postimg.cc/C1x2fwJM/Screen-Shot-2020-11-27-at-11-30-06-AM.png)
 
 ## Running the Tests
 Be sure that your virtual environment is activated.
@@ -127,7 +152,7 @@ There are a few important things to note about the inner directories of this fol
 - ```static and staticfiles```: all custom CSS, images, and Javascript files used in the project go here. If you add any new static files, you need only to upload them to the ```staticfiles``` directory. In production AWS S3 will be used to deploy static files.
 - ```store```: everything related to users finding and connecting with green products and services that help them become more environmentally conscious.
 - ```templates```: all HTML files applied to the project as a whole, and not specific to any of the above packages (i.e. the landing page is saved here as```index.html```).
-- ```conscious_consumer```: in what may seem strange to Django-beginners, there is also an innner-directory named ```conscious_consumer```! Remember that the project governs over the apps in Django; so this package stores all Python modules pertaining to the project as a whole, not any one specific app. For example, you will find the all-important ```settings.py``` script in this directory, where you will be able to configure important project settings such as the database used, the URL configuration, static file storage, and more.
+- ```conscious_consumer```: in what may seem strange to Django-beginners, there is also an innner-directory named ```conscious_consumer```! Remember that the project governs over the apps in Django; so this package stores all Python modules pertaining to the project as a whole, not any one specific app. For example, you will find the all-important ```settings``` package in this directory, where you will be able to configure important project settings such as the database used, the URL configuration, static file storage, and more.
 2. **Imports**: all of the subdirectories of the outer ```conscious_consumer``` directory are the equivalent of Python packages. In turn, this means an individual Python script in one of these subdirectories (i.e. ```conscious_consumer/budget/models.py```) is the equivalent of a Python module. This means you will need to use the dot operator(.) when importing objects between these scripts.
 3. **MVC Architecture**: so you think you're ready to work with apps in Django? Not so fast - read this first if you're new to Django, so you know what each of the main files in the app directories (outlined above) actually mean. Remember you can also always refer back to the [Django documentation](https://docs.djangoproject.com) for more clarification. If you first need to learn what MVC Architecture is conceptually, please look at [this superb explanation on Real Python](https://realpython.com/the-model-view-controller-mvc-paradigm-summarized-with-legos/).
 

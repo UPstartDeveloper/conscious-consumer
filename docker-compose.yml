@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: 
+      context: ./conscious_consumer
+      dockerfile: ./conscious_consumer/Dockerfile
+    command: bash -c "python ./conscious_consumer/manage.py migrate && python ./conscious_consumer/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=conscious_consumer.settings.caprover_settings
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST=db
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db 

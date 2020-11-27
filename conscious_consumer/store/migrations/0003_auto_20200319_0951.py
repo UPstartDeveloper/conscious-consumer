@@ -6,18 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('store', '0002_auto_20200318_1822'),
+        ("store", "0002_auto_20200318_1822"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='monthly_emission',
-            field=models.FloatField(blank=True, help_text='Metric tons of carbon emitted monthly by someone using this product or service.', null=True),
+            model_name="product",
+            name="monthly_emission",
+            field=models.FloatField(
+                blank=True,
+                help_text="Metric tons of carbon emitted monthly by someone using this product or service.",
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='stock',
-            field=models.IntegerField(default=0, help_text='Number of available units/customers you are able to service currently. Default value: 0. You can always come update this later.'),
+            model_name="product",
+            name="stock",
+            field=models.IntegerField(
+                default=0,
+                help_text="Number of available units/customers you are able to service currently. Default value: 0. You can always come update this later.",
+            ),
         ),
     ]
