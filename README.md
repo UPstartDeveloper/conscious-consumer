@@ -1,6 +1,8 @@
 ![Brand Image](https://i.postimg.cc/kgPFx4cP/Screen-Shot-2020-03-23-at-12-43-12-PM.png)
 
 # Conscious Consumer
+![Travis CI Build](https://travis-ci.com/UPstartDeveloper/conscious-consumer.svg?branch=master) ![Docker Image Size](https://img.shields.io/docker/image-size/zainrazatheupstart/conscious_consumer/latest)
+
 Fitbit for living a green life. [See it Now.](https://consciousconsumer.herokuapp.com)
 
 ## Table of Contents
