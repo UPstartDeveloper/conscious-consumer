@@ -16,9 +16,4 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = [
-    'conscious-consumer-app.dev.zainraza.me'
-]
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-AWS_STORAGE_BUCKET_NAME = ''
+ALLOWED_HOSTS.append('conscious-consumer-app.dev.zainraza.me')
