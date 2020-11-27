@@ -15,6 +15,7 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     mugshot = models.ImageField(upload_to='images/',
                                 default='images/user-icon.jpg',
+                                null=True, blank=True,
                                 help_text="User profile image")
 
     def __str__(self):

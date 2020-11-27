@@ -1,6 +1,7 @@
 <!-- conscious_consumer/accounts/templates/accounts/profile/detail.html -->
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
     <!-- if user has just changed password -->
     {% if messages %}
@@ -49,7 +50,12 @@
         <div class="col-md-6">
             <!-- Profile Image -->
             <div class="row justify-content-center">
-                <img class="mb-3" src="{{ profile.mugshot.url }}" alt="Profile image" height=400px width=400px>
+                <!-- Show the User Profile Image, or the Default Images (works on Env w/o AWS variables -->
+                {% if profile.mugshot is not None %}
+                    <img class="mb-3" src="{{ profile.mugshot.url }}" alt="Profile image" height=400px width=400px>
+                {% else %}
+                    <img class="mb-3" src="{% static 'images/user-icon.png' %}" alt="Profile image" height=400px width=400px>
+                {% endif %}
             </div>
             <div class="row">
                 <div class="col-md-4"></div>

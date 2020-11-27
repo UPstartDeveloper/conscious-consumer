@@ -12,9 +12,6 @@ before_script:
 install:
   - cd conscious_consumer/
   - pip install -r requirements.txt
-# add dummy env var 
-env:
-  - AWS_STORAGE_BUCKET_NAME=test-bucket
 # command to run tests
 script:
   - python manage.py collectstatic --noinput
