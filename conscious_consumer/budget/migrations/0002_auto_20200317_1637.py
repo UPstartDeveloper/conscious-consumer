@@ -6,18 +6,40 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('budget', '0001_initial'),
+        ("budget", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='goal',
-            name='category',
-            field=models.CharField(blank=True, choices=[('Home', 'Home'), ('Living', 'Living'), ('Food', 'Food'), ('Shopping', 'Shopping'), ('Travel', 'Travel')], help_text='What area of life relates to your goal?', max_length=8, null=True),
+            model_name="goal",
+            name="category",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("Home", "Home"),
+                    ("Living", "Living"),
+                    ("Food", "Food"),
+                    ("Shopping", "Shopping"),
+                    ("Travel", "Travel"),
+                ],
+                help_text="What area of life relates to your goal?",
+                max_length=8,
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='goal',
-            name='monthly_target',
-            field=models.FloatField(choices=[(0.03, 'Lower bound carbon limit'), (0.06, 'Almost-there carbon limit'), (0.09, 'Reasonable carbon limit'), (0.12, 'Making-progress carbon limit'), (0.17, 'Upper bound carbon limit')], default=0.17, help_text='How many tons carbon will you limit yourself to each month?'),
+            model_name="goal",
+            name="monthly_target",
+            field=models.FloatField(
+                choices=[
+                    (0.03, "Lower bound carbon limit"),
+                    (0.06, "Almost-there carbon limit"),
+                    (0.09, "Reasonable carbon limit"),
+                    (0.12, "Making-progress carbon limit"),
+                    (0.17, "Upper bound carbon limit"),
+                ],
+                default=0.17,
+                help_text="How many tons carbon will you limit yourself to each month?",
+            ),
         ),
     ]

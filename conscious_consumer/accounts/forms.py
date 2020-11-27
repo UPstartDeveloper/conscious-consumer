@@ -8,17 +8,16 @@ from .models import Profile
 
 
 class SignUpForm(UserCreationForm):
-    '''A form to register new users.'''
+    """A form to register new users."""
+
     class Meta:
         model = User
-        fields = ['username',
-                  'email',
-                  'password1', 'password2']
+        fields = ["username", "email", "password1", "password2"]
 
     def save(self, commit=True):
-        '''Initializes fields of the new User instance.'''
+        """Initializes fields of the new User instance."""
         user = super(SignUpForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
+        user.email = self.cleaned_data["email"]
 
         if commit is True:
             user.save()
@@ -29,13 +28,13 @@ class SignUpForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user']
+        exclude = ["user"]
 
 
 class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'username',
-            'email',
+            "username",
+            "email",
         ]

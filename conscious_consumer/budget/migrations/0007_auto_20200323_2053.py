@@ -9,13 +9,18 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('budget', '0006_auto_20200323_1139'),
+        ("budget", "0006_auto_20200323_1139"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='goal',
-            name='author',
-            field=models.ForeignKey(help_text='The user that posted this article.', null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="goal",
+            name="author",
+            field=models.ForeignKey(
+                help_text="The user that posted this article.",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

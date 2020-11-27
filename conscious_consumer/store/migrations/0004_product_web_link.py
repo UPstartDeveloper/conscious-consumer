@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('store', '0003_auto_20200319_0951'),
+        ("store", "0003_auto_20200319_0951"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='web_link',
-            field=models.CharField(blank=True, help_text='Link to access payment page.', max_length=1000, null=True),
+            model_name="product",
+            name="web_link",
+            field=models.CharField(
+                blank=True,
+                help_text="Link to access payment page.",
+                max_length=1000,
+                null=True,
+            ),
         ),
     ]
