@@ -20,6 +20,7 @@ services:
       - DJANGO_SETTINGS_MODULE=conscious_consumer.caprover_settings
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
+      - POSTGRES_HOST=db
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db 
