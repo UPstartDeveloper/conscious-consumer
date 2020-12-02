@@ -10,7 +10,7 @@ services:
   web:
     build: 
       context: ./conscious_consumer
-      dockerfile: ./conscious_consumer/Dockerfile
+      dockerfile: ./Dockerfile
     command: bash -c "python ./conscious_consumer/manage.py migrate && python ./conscious_consumer/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
