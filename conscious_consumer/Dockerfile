@@ -9,6 +9,6 @@ RUN pip install -r ./requirements.txt
 # copy the Django project
 COPY . /code/
 # change file permissions on the entrypoint
-RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./entrypoint
 # run the commands on entrypoint.sh
-CMD ["./entrypoint.sh"]
+CMD ["./entrypoint"]
