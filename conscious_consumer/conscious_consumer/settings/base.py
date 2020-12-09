@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "consciousconsumer.herokuapp.com",
     "127.0.0.1",
+    "0.0.0.0"
 ]
 
 # Max length for charfields

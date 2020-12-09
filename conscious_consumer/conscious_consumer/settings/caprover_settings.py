@@ -18,6 +18,6 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = [
-    "conscious-consumer-app.dev.zainraza.me"
-]
+ALLOWED_HOSTS.append(
+     "conscious-consumer-app.dev.zainraza.me",  # for devs using in prod
+) 
