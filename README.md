@@ -1,7 +1,7 @@
 ![Brand Image](https://i.postimg.cc/kgPFx4cP/Screen-Shot-2020-03-23-at-12-43-12-PM.png)
 
 # Conscious Consumer
-![Travis CI Build](https://travis-ci.com/UPstartDeveloper/conscious-consumer.svg?branch=master) ![Docker Image Size](https://img.shields.io/docker/image-size/zainrazatheupstart/conscious_consumer/latest) ![Website Status on CapRover](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fconsciousconsumer.herokuapp.com/%2F)
+![Travis CI Build](https://travis-ci.com/UPstartDeveloper/conscious-consumer.svg?branch=master) ![Docker Image Size](https://img.shields.io/docker/image-size/zainrazatheupstart/conscious_consumer/latest) ![Website Status](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fconsciousconsumer.herokuapp.com%2F)
 
 Fitbit for living a green life. See it [now](https://consciousconsumer.herokuapp.com/), or view the [status page](https://statuspage.freshping.io/49104-ConsciousConsumer).
 
